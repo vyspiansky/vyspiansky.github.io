@@ -1,11 +1,214 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Ihor Vyspiansky's Page</title>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h1>Привіт світ ;)</h1>
-		<p>I'm hosted with GitHub Pages.</p>
-	</body>
-</html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ihor Vyspiansky's contact information</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <style>
+        body {
+            background-color: #282828;
+            color: #808080;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            text-align: center;
+        }
+		.container {
+			max-width: 420px;
+			margin: 56px auto;
+			padding: 0 32px;
+		}
+        h2 {
+            font-size: 18px;
+        }
+        p > a {
+            color: #fff;
+            position: relative;
+            text-decoration: none;
+        }
+        p > a:hover {
+            color: #fff;
+        }
+        p > a:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #fff;
+            visibility: hidden;
+            -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+        }
+        p > a:hover:before {
+            visibility: visible;
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+        p > span {
+            color: #fff;
+        }
+        ul {
+            padding-left: 0;
+            list-style-type: none;
+        }
+        ul li {
+            display: inline-block;
+            padding: 0 12px;
+        }
+        ul li:first-child {
+            padding-left: 0;
+        }
+        ul li:last-child {
+            padding-right: 0;
+        }
+        svg {
+            width: 36px;
+            height: 36px;
+        }
+        svg rect {
+            fill: #282828;
+            width: 128px;
+            height: 128px;
+        }
+        svg path {
+            fill: #fff;
+            -webkit-transition: fill 400ms linear;
+            -ms-transition: fill 400ms linear;
+            transition: fill 400ms linear;
+        }
+        a:hover #facebook path {
+            fill: #3a5a99;
+        }
+        a:hover #twitter path {
+            fill: #55acee;
+        }
+        a:hover #linkedin path {
+            fill: #0076b2;
+        }
+        a:hover #github path {
+            fill: #3f91cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Hi, I’m Ihor Vyspiansky from L’viv, Ukraine. I enjoy building things for the Web with JavaScript &amp; PHP</p>
+
+        <h2>You can contact me</h2>
+
+        <p>E-mail: <a href="mailto:i.vyspyanskyy@gmail.com">i.vyspyanskyy@gmail.com</a></p>
+        <p>Skype: <a href="skype:ihor.vyspyanskyy?chat">ihor.vyspyanskyy</a></p>
+        <p>Phone: <span>+38 (096) 457-80-68</span></p>
+
+        <h2>...or follow on</h2>
+        <ul>
+            <li>
+                <a href="https://twitter.com/vyspiansky" title="Twitter" target="_blank">
+                    <svg version="1.1" id="twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve">
+                        <g>
+                            <rect id="twitter-back"/>
+                            <path id="twitter-twitter" d="M99.8398,41.7695c-2.6367,1.17-5.4707,1.96-8.4462,2.3155
+                                c3.0361-1.8204,5.3681-4.7022,6.4658-8.1358c-2.8408,1.6846-5.9883,2.9092-9.3379,3.5684
+                                c-2.6826-2.8584-6.5049-4.6436-10.7344-4.6436c-8.1221,0-14.7065,6.584-14.7065,14.7051c0,1.1533,0.1303,2.2754,0.3808,3.3516
+                                c-12.2221-0.6133-23.0581-6.4678-30.311-15.3653c-1.2661,2.1719-1.9912,4.6983-1.9912,7.3936c0,5.1015,2.5962,9.6025,6.542,12.2402
+                                c-2.4107-0.0762-4.6783-0.7383-6.6607-1.8398c-0.0014,0.0615-0.0014,0.123-0.0014,0.1855c0,7.125,5.0693,13.0684,11.7968,14.4199
+                                c-1.2343,0.336-2.5337,0.5157-3.8745,0.5157c-0.9477,0-1.8691-0.0928-2.7671-0.2637c1.8716,5.8418,7.3028,10.0937,13.7378,10.2129
+                                c-5.0332,3.9443-11.374,6.2949-18.2641,6.2949c-1.187,0-2.3575-0.0693-3.5078-0.2051c6.5083,4.1729,14.2377,6.6065,22.5429,6.6065
+                                c27.0498,0,41.8418-22.4082,41.8418-41.8418c0-0.6377-0.0146-1.2715-0.0429-1.9024C95.375,47.3086,97.8691,44.7188,99.8398,41.7695
+                                z"/>
+                        </g>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/vyspiansky" title="Linkedin" target="_blank">
+                    <svg version="1.1" id="linkedin" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve">
+                        <g>
+                            <rect id="linkedin-back"/>
+                            <g id="linkedin-linkedin">
+                                <path d="M29.0752,51.7471h14.8686v47.792H29.0752V51.7471z M36.5137,27.9897c4.7514,0,8.6089,3.8589,8.6089,8.6133
+                                    c0,4.7554-3.8575,8.6143-8.6089,8.6143c-4.7705,0-8.6172-3.8589-8.6172-8.6143C27.8965,31.8486,31.7432,27.9897,36.5137,27.9897"
+                                    />
+                                <path d="M53.2622,51.7471H67.5v6.5337h0.2041c1.9805-3.7574,6.8272-7.7198,14.0537-7.7198
+                                    c15.0391,0,17.8184,9.896,17.8184,22.7671v26.211H84.7246V76.2979c0-5.542-0.0957-12.6719-7.7187-12.6719
+                                    c-7.7286,0-8.9082,6.04-8.9082,12.2754v23.6377H53.2622V51.7471z"/>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/vyspiansky" title="Github" target="_blank">
+                    <svg version="1.1" id="github" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve">
+                        <g>
+                            <rect id="github-back"/>
+                            <g id="github-github">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M64,29.0449c-19.791,0-35.8398,16.0454-35.8398,35.8399
+                                    c0,15.8349,10.2695,29.2695,24.5097,34.0088c1.791,0.331,2.4492-0.7784,2.4492-1.7247c0-0.8544-0.0332-3.6777-0.0488-6.6728
+                                    c-9.9707,2.168-12.0752-4.2285-12.0752-4.2285c-1.6299-4.1426-3.9795-5.2442-3.9795-5.2442
+                                    c-3.2519-2.2246,0.2461-2.1787,0.2461-2.1787c3.5977,0.253,5.4932,3.6944,5.4932,3.6944
+                                    c3.1963,5.4785,8.3847,3.8945,10.4297,2.9785c0.3222-2.3164,1.2509-3.8975,2.2754-4.793
+                                    c-7.96-0.9053-16.3291-3.9785-16.3291-17.7119c0-3.9126,1.4004-7.1099,3.6933-9.6196c-0.3721-0.9034-1.5996-4.5484,0.3477-9.4854
+                                    c0,0,3.0088-0.9624,9.8574,3.6743c2.8594-0.7939,5.9258-1.1924,8.9707-1.206c3.0459,0.0136,6.1143,0.4121,8.9785,1.206
+                                    c6.8408-4.6367,9.8467-3.6743,9.8467-3.6743c1.9502,4.937,0.7236,8.582,0.3516,9.4854c2.2978,2.5097,3.6884,5.707,3.6884,9.6196
+                                    c0,13.7666-8.3847,16.7959-16.3652,17.6846c1.2852,1.1113,2.4307,3.2929,2.4307,6.6367c0,4.7949-0.0411,8.6543-0.0411,9.8349
+                                    c0,0.9541,0.6456,2.0713,2.462,1.7198c14.2324-4.7442,24.4892-18.1739,24.4892-34.0039
+                                    C99.8408,45.0903,83.7939,29.0449,64,29.0449z"/>
+                                <path d="M41.7354,80.5029c-0.0791,0.1787-0.3594,0.2315-0.6153,0.1104c-0.2597-0.1172-0.4053-0.3604-0.3213-0.5391
+                                    c0.0772-0.1836,0.3575-0.2344,0.6172-0.1113C41.6768,80.0801,41.8252,80.3242,41.7354,80.5029L41.7354,80.5029z M41.2939,80.1758"
+                                    />
+                                <path d="M43.1865,82.123c-0.1709,0.1583-0.5049,0.084-0.7314-0.166c-0.2354-0.25-0.2783-0.584-0.1055-0.7451
+                                    c0.1768-0.1582,0.5-0.084,0.7354,0.166C43.3193,81.6309,43.3652,81.9619,43.1865,82.123L43.1865,82.123z M42.8447,81.7559"/>
+                                <path d="M44.5996,84.1865c-0.2197,0.1533-0.5791,0.0098-0.8008-0.3095c-0.2197-0.3184-0.2197-0.7012,0.0049-0.8536
+                                    c0.2227-0.1533,0.5762-0.0156,0.8018,0.3008C44.8242,83.6484,44.8242,84.0303,44.5996,84.1865L44.5996,84.1865z M44.5996,84.1865"
+                                    />
+                                <path d="M46.5352,86.1807c-0.1963,0.2168-0.6143,0.1582-0.9209-0.1377c-0.3135-0.2881-0.4004-0.6992-0.2041-0.916
+                                    c0.2002-0.2168,0.6211-0.1553,0.9287,0.1386C46.6504,85.5537,46.7451,85.9668,46.5352,86.1807L46.5352,86.1807z M46.5352,86.1807"
+                                    />
+                                <path d="M49.2061,87.3389c-0.087,0.2802-0.4893,0.4072-0.8956,0.2881c-0.4052-0.1231-0.6699-0.4512-0.5888-0.7344
+                                    c0.084-0.2832,0.4892-0.416,0.8984-0.2881C49.0254,86.7266,49.29,87.0527,49.2061,87.3389L49.2061,87.3389z M49.2061,87.3389"/>
+                                <path d="M52.1396,87.5527c0.0098,0.2959-0.3339,0.5411-0.7607,0.5469c-0.4277,0.0098-0.7754-0.2305-0.7793-0.5215
+                                    c0-0.2978,0.3359-0.54,0.7647-0.5478C51.79,87.0225,52.1396,87.2598,52.1396,87.5527L52.1396,87.5527z M52.1396,87.5527"/>
+                                <path d="M54.8691,87.0889c0.0508,0.2881-0.2451,0.5849-0.6679,0.6631c-0.417,0.0761-0.8018-0.1016-0.8545-0.3877
+                                    c-0.0518-0.2959,0.25-0.5918,0.665-0.669C54.4355,86.623,54.8154,86.7959,54.8691,87.0889L54.8691,87.0889z M54.8691,87.0889"/>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/i.vyspiansky" title="Facebook" target="_blank">
+                    <svg version="1.1" id="facebook" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve">
+                        <g>
+                            <rect id="facebook-back"/>
+                            <path id="facebook-facebook" d="M95.8838,28.1602H32.1162c-2.1855,0-3.956,1.7705-3.956,3.956v63.7676
+                                c0,2.1846,1.7705,3.956,3.956,3.956h34.3301V72.082h-9.3408V61.2637h9.3408v-7.9776c0-9.2588,5.6543-14.2998,13.9141-14.2998
+                                c3.956,0,7.3554,0.2945,8.3466,0.4263v9.6753l-5.7275,0.0024c-4.4922,0-5.3613,2.1348-5.3613,5.2666v6.9068h10.7119L86.9355,72.082
+                                h-9.3173v27.7578h18.2656c2.1846,0,3.956-1.7714,3.956-3.956V32.1162C99.8398,29.9307,98.0684,28.1602,95.8838,28.1602z"/>
+                        </g>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-40529163-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>    
+</body>

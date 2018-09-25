@@ -5,7 +5,7 @@ var store = [{
         "url": "https://vyspiansky.github.io/2018/03/01/aws-credentials/",
         "teaser":null},{
         "title": "Next AUTO_INCREMENT value",
-        "excerpt":"To get the next AUTO_INCREMENT value from a table run the following query: SELECT AUTO_INCREMENTFROM information_schema.TABLESWHERE TABLE_SCHEMA = \"databaseName\"AND TABLE_NAME = \"tableName\"","categories": ["DevOps"],
+        "excerpt":"To get the next AUTO_INCREMENT value from a table run the following query: SELECT AUTO_INCREMENTFROM information_schema.TABLESWHERE TABLE_SCHEMA = \"databaseName\"AND TABLE_NAME = \"tableName\"","categories": ["Databases"],
         "tags": ["AUTO_INCREMENT","MySQL"],
         "url": "https://vyspiansky.github.io/2018/03/01/next-auto-increment/",
         "teaser":null},{

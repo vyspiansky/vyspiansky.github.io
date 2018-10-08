@@ -1,4 +1,9 @@
 var store = [{
+        "title": "How to add email to MailChimp list using WordPress",
+        "excerpt":"&lt;?php$apiKey = 'your API key';$dc     = 'MailChimp data center, for example, \"us6\"';$listId = 'your list id';$email  = 'your@mail.here';$url = \"https://{$dc}.api.mailchimp.com/2.0/lists/subscribe.json\";$request = wp_remote_post($url, [    'body' =&gt; json_encode([        'apikey' =&gt; $apiKey,        'id'     =&gt; $listId,        'email'  =&gt; ['email' =&gt; $email],    ]),]);$result = json_decode(wp_remote_retrieve_body($request));// some kind of check here ...","categories": ["WordPress"],
+        "tags": ["MailChimp"],
+        "url": "https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/",
+        "teaser":null},{
         "title": "Working with AWS credentials on macOS",
         "excerpt":"Check credentials $ aws configure listAdd credentials $ nano ~/.aws/credentials[default]aws_access_key_id=&lt;…&gt;aws_secret_access_key=&lt;…&gt;","categories": ["DevOps"],
         "tags": ["AWS","macOS"],

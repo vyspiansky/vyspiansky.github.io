@@ -9,26 +9,28 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Tech Notes</title>
-<meta name="description" content="Software Developer Blog.">
+<!-- begin _includes/seo.html --><title>Error: tool ’xcodebuild’ requires Xcode… on macOS | Tech Notes</title>
+<meta name="description" content="If you get the following error with npm install">
 
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Tech Notes">
-<meta property="og:title" content="Tech Notes">
-<meta property="og:url" content="https://vyspiansky.github.io/">
+<meta property="og:title" content="Error: tool ’xcodebuild’ requires Xcode… on macOS">
+<meta property="og:url" content="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">
 
+
+  <meta property="og:description" content="If you get the following error with npm install">
 
 
 
 
 
   <meta name="twitter:site" content="@vyspiansky">
-  <meta name="twitter:title" content="Tech Notes">
-  <meta name="twitter:description" content="Software Developer Blog.">
-  <meta name="twitter:url" content="https://vyspiansky.github.io/">
+  <meta name="twitter:title" content="Error: tool ’xcodebuild’ requires Xcode… on macOS">
+  <meta name="twitter:description" content="If you get the following error with npm install">
+  <meta name="twitter:url" content="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">
 
   
     <meta name="twitter:card" content="summary">
@@ -39,6 +41,8 @@
 
 
 
+  <meta property="article:published_time" content="2018-09-28T00:00:00+03:00">
+
 
 
 
@@ -48,11 +52,9 @@
   
 
 
-<link rel="canonical" href="https://vyspiansky.github.io/">
+<link rel="canonical" href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">
 
 
-
-  <link rel="next" href="https://vyspiansky.github.io/page2/">
 
 
 
@@ -116,7 +118,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--single">
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -274,48 +276,147 @@
   </div>
 
 
-  <div class="archive">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Error: tool ’xcodebuild’ requires Xcode… on macOS">
+    <meta itemprop="description" content="If you get the following error with npm install">
+    <meta itemprop="datePublished" content="September 28, 2018">
     
-      <h1 id="page-title" class="page__title"></h1>
-    
-    
 
-<h3 class="archive__subtitle">Recent posts</h3>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
+    <div class="page__inner-wrap">
       
-        <a href="/2018/09/28/xcodebuild-requires-xcode/" rel="permalink">Error: tool ’xcodebuild’ requires Xcode… on macOS
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Error: tool ’xcodebuild’ requires Xcode… on macOS
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
 
   less than 1 minute read
 </p>
-    
-    <p class="archive__item-excerpt" itemprop="description">If you get the following error with npm install
+          
+        </header>
+      
 
-</p>
-  </article>
-</div>
+      <section class="page__content" itemprop="text">
+        
+        <p>If you get the following error with <code class="highlighter-rouge">npm install</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instance
+</code></pre></div></div>
+
+<p>then to fix it try</p>
+
+<ol>
+  <li>(optional) Install <code class="highlighter-rouge">Xcode</code> - go to the AppStore and download the Xcode https://itunes.apple.com/us/app/xcode/id497799835</li>
+  <li>Point the <code class="highlighter-rouge">xcode-select</code> developer directory to the appropriate directory from within <code class="highlighter-rouge">Xcode.app</code>. To do this, run</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>xcode-select <span class="nt">-s</span> /Applications/Xcode.app/Contents/Developer
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#command-line" class="page__taxonomy-item" rel="tag">command line</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#terminal" class="page__taxonomy-item" rel="tag">terminal</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#xcode" class="page__taxonomy-item" rel="tag">Xcode</a>
+    
+    </span>
+  </p>
+
+
+
 
   
 
 
+  
+  
+  
 
-<div class="list__item">
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#mac" class="page__taxonomy-item" rel="tag">Mac</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-28T00:00:00+03:00">September 28, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=vyspiansky&text=Error%3A%C2%A0tool%C2%A0%27xcodebuild%27%C2%A0requires%C2%A0Xcode...+on+macOS%20https%3A%2F%2Fvyspiansky.github.io%2F2018%2F09%2F28%2Fxcodebuild-requires-xcode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvyspiansky.github.io%2F2018%2F09%2F28%2Fxcodebuild-requires-xcode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fvyspiansky.github.io%2F2018%2F09%2F28%2Fxcodebuild-requires-xcode%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvyspiansky.github.io%2F2018%2F09%2F28%2Fxcodebuild-requires-xcode%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2018/08/30/launch-sublime-text-3-terminal/" class="pagination--pager" title="Launch Sublime Text 3 from the terminal
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
@@ -339,12 +440,12 @@
 </p>
   </article>
 </div>
+        
+          
 
-  
 
 
-
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
@@ -367,12 +468,12 @@
 </p>
   </article>
 </div>
+        
+          
 
-  
 
 
-
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
@@ -395,12 +496,12 @@
 </p>
   </article>
 </div>
+        
+          
 
-  
 
 
-
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
@@ -424,48 +525,11 @@
 </p>
   </article>
 </div>
-
-
-
-<nav class="pagination">
+        
+      </div>
+    </div>
   
-  <ul>
-    
-    
-    <li><a href="#" class="disabled"><span aria-hidden="true">Previous</span></a></li>
-    
-
-    
-    
-      <li><a href="#" class="disabled current">1</a></li>
-    
-
-    
-    
-
-    
-    
-    
-
-    
-
-    
-    
-
-    
-      <li><a href="/page2/">2</a></li>
-    
-
-    
-    
-      <li><a href="/page2/">Next</a></li>
-    
-  </ul>
-</nav>
-
-
-
-  </div>
+  
 </div>
     </div>
 

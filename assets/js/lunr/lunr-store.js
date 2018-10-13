@@ -35,7 +35,7 @@ var store = [{
         "url": "https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal/",
         "teaser":null},{
         "title": "Error: tool 'xcodebuild' requires Xcode... on macOS",
-        "excerpt":"If you get the following error with npm install  xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instancethen to fix it try (optional) Install Xcode - go to the AppStore and download the Xcode https://itunes.apple.com/us/app/xcode/id497799835 Point the xcode-select developer directory to the appropriate directory from within Xcode.app. To do this, runsudo xcode-select -s /Applications/Xcode.app/Contents/Developer...","categories": ["Mac"],
+        "excerpt":"If you get the following error with npm install  xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instancethen to fix it try (optional) Install Xcode - go to the AppStore and download the Xcode. Point the xcode-select developer directory to the appropriate directory from within Xcode.app. To do this, runsudo xcode-select -s /Applications/Xcode.app/Contents/Developer...","categories": ["Mac"],
         "tags": ["command line","terminal","Xcode"],
         "url": "https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/",
         "teaser":null}]

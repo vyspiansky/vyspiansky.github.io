@@ -9,27 +9,27 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Create MySQL dump on EC2 instance and download it on your Mac | Tech Notes</title>
-<meta name="description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.">
+<!-- begin _includes/seo.html --><title>Create MySQL dump on EC2 instance and download it | Tech Notes</title>
+<meta name="description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local (Mac) machine.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Tech Notes">
-<meta property="og:title" content="Create MySQL dump on EC2 instance and download it on your Mac">
+<meta property="og:title" content="Create MySQL dump on EC2 instance and download it">
 <meta property="og:url" content="https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local/">
 
 
-  <meta property="og:description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.">
+  <meta property="og:description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local (Mac) machine.">
 
 
 
 
 
   <meta name="twitter:site" content="@vyspiansky">
-  <meta name="twitter:title" content="Create MySQL dump on EC2 instance and download it on your Mac">
-  <meta name="twitter:description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.">
+  <meta name="twitter:title" content="Create MySQL dump on EC2 instance and download it">
+  <meta name="twitter:description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local (Mac) machine.">
   <meta name="twitter:url" content="https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local/">
 
   
@@ -277,15 +277,15 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Create MySQL dump on EC2 instance and download it on your Mac">
-    <meta itemprop="description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.">
+    <meta itemprop="headline" content="Create MySQL dump on EC2 instance and download it">
+    <meta itemprop="description" content="We’re going to create a MySQL dump on an EC2 instance and download this file to our local (Mac) machine.">
     <meta itemprop="datePublished" content="May 15, 2017">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Create MySQL dump on EC2 instance and download it on your Mac
+          <h1 id="page-title" class="page__title" itemprop="headline">Create MySQL dump on EC2 instance and download it
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -301,7 +301,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.</p>
+        <p>We’re going to create a MySQL dump on an EC2 instance and download this file to our local (Mac) machine.</p>
 
 <p>First of all let’s connect to the instance using a <code class="highlighter-rouge">ssh</code> command:</p>
 
@@ -326,14 +326,14 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gzip <span class="nt">-f</span> &lt;BACKUP_NAME&gt;.sql
 </code></pre></div></div>
 
-<p>Note! <code class="highlighter-rouge">-f</code> option forcefully compresses a file named <code class="highlighter-rouge">&lt;BACKUP_NAME&gt;.sql</code> even if there already exists a file named as <code class="highlighter-rouge">&lt;BACKUP_NAME&gt;.sql.gz</code>.</p>
+<p><strong>Note!</strong> <code class="highlighter-rouge">-f</code> option forcefully compresses a file named <code class="highlighter-rouge">&lt;BACKUP_NAME&gt;.sql</code> even if there already exists a file named as <code class="highlighter-rouge">&lt;BACKUP_NAME&gt;.sql.gz</code>.</p>
 
 <p>Use <code class="highlighter-rouge">scp</code> to download the backup file from the EC2 instance to your local machine:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-i</span> <span class="s2">"/path/to/your/*.pem"</span> ec2-user@&lt;PUBLIC_DNS_NAME&gt;:/path/to/your/backup ~/Downloads/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-i</span> <span class="s2">"/path/to/your/*.pem"</span> &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;:/path/to/your/backup ~/Downloads/
 </code></pre></div></div>
 
-<p>Note! <code class="highlighter-rouge">scp</code> means “secure copy”, which can copy files between computers on a network.</p>
+<p><strong>Note!</strong> <code class="highlighter-rouge">scp</code> means “secure copy”, which can copy files between computers on a network.</p>
 
 <p>If needed the backup file can be removed on the EC2 instance:</p>
 
@@ -424,7 +424,7 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=vyspiansky&text=Create+MySQL+dump+on+EC2+instance+and+download+it+on+your+Mac%20https%3A%2F%2Fvyspiansky.github.io%2F2017%2F05%2F15%2Fdownload-ec2-mysql-dump-to-local%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=vyspiansky&text=Create+MySQL+dump+on+EC2+instance+and+download+it%20https%3A%2F%2Fvyspiansky.github.io%2F2017%2F05%2F15%2Fdownload-ec2-mysql-dump-to-local%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvyspiansky.github.io%2F2017%2F05%2F15%2Fdownload-ec2-mysql-dump-to-local%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 

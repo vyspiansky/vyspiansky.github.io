@@ -5,7 +5,7 @@ var store = [{
         "url": "https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/",
         "teaser":null},{
         "title": "Create MySQL dump on EC2 instance and download it",
-        "excerpt":"We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine. First of all let’s connect to the instance using a ssh command: ssh -i \"/path/to/your/*.pem\" &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;where /path/to/your/*.pem is the location where the PEM key is stored. EC2_USERNAME is the username...","categories": ["DevOps"],
+        "excerpt":"We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine. First of all let’s connect to the instance using a ssh command: ssh -i \"/path/to/your/*.pem\" &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;where /path/to/your/*.pem is the location where the PEM key is stored. EC2_USERNAME is the username...","categories": ["DevOps","Databases"],
         "tags": ["SSH","MySQL","EC2","scp","Amazon","mysqldump","macOS","terminal"],
         "url": "https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local-machine/",
         "teaser":null},{

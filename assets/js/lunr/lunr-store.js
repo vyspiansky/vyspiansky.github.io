@@ -14,6 +14,11 @@ var store = [{
         "tags": ["SSH","MySQL","EC2","scp","Amazon","mysqldump","macOS","terminal"],
         "url": "https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local-machine/",
         "teaser":null},{
+        "title": "SSH keys are lost after macOS High Sierra reboot",
+        "excerpt":"To list all keys run ssh-add -lRe-import your SSH key ssh-add -K ~/.ssh/id_rsaAdd the following to your ~/.ssh/config file: Host *   AddKeysToAgent yes   UseKeychain yesSource: macOS Sierra doesn’t seem to remember SSH keys between reboots ","categories": ["Mac"],
+        "tags": ["AWS","macOS","SSH","SSH key"],
+        "url": "https://vyspiansky.github.io/2017/07/28/ssh-keys-are-lost-after-macos-reboot/",
+        "teaser":null},{
         "title": "Working with AWS credentials on macOS",
         "excerpt":"Check credentials $ aws configure listAdd credentials $ nano ~/.aws/credentials[default]aws_access_key_id=&lt;…&gt;aws_secret_access_key=&lt;…&gt;","categories": ["DevOps"],
         "tags": ["AWS","macOS"],

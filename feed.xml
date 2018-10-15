@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2018-10-13T15:25:40+03:00</updated><id>https://vyspiansky.github.io/</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Error: tool ’xcodebuild’ requires Xcode… on macOS</title><link href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/" rel="alternate" type="text/html" title="Error: tool 'xcodebuild' requires Xcode... on macOS" /><published>2018-09-28T00:00:00+03:00</published><updated>2018-09-28T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode</id><content type="html" xml:base="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">&lt;p&gt;If you get the following error with &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2018-10-15T20:36:55+03:00</updated><id>https://vyspiansky.github.io/</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Error: tool ’xcodebuild’ requires Xcode… on macOS</title><link href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/" rel="alternate" type="text/html" title="Error: tool 'xcodebuild' requires Xcode... on macOS" /><published>2018-09-28T00:00:00+03:00</published><updated>2018-09-28T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode</id><content type="html" xml:base="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">&lt;p&gt;If you get the following error with &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instance
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -80,7 +80,44 @@ $ export PATH=&quot;$PATH:$HOME/.composer/vendor/bin&quot;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[default]
 aws_access_key_id=&amp;lt;…&amp;gt;
 aws_secret_access_key=&amp;lt;…&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="AWS" /><category term="macOS" /><summary type="html">Check credentials</summary></entry><entry><title type="html">How to add email to MailChimp list using WordPress</title><link href="https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/" rel="alternate" type="text/html" title="How to add email to MailChimp list using WordPress" /><published>2017-03-10T00:00:00+02:00</published><updated>2017-03-10T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress</id><content type="html" xml:base="https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/">&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="AWS" /><category term="macOS" /><summary type="html">Check credentials</summary></entry><entry><title type="html">Create MySQL dump on EC2 instance and download it on your Mac</title><link href="https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local/" rel="alternate" type="text/html" title="Create MySQL dump on EC2 instance and download it on your Mac" /><published>2017-05-15T00:00:00+03:00</published><updated>2017-05-15T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local</id><content type="html" xml:base="https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local/">&lt;p&gt;We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.&lt;/p&gt;
+
+&lt;p&gt;First of all let’s connect to the instance using a &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/path/to/your/*.pem&quot;&lt;/span&gt; &amp;lt;EC2_USERNAME&amp;gt;@&amp;lt;PUBLIC_DNS_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/your/*.pem&lt;/code&gt; is the location where the PEM key is stored.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;EC2_USERNAME&lt;/code&gt; is the username you log in with. If you used Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PUBLIC_DNS_NAME&lt;/code&gt; is the IP or DNS alias of the instance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then use the &lt;code class=&quot;highlighter-rouge&quot;&gt;mysqldump&lt;/code&gt; utility to export a dump file from the database:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mysqldump &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &amp;lt;AMAZONAWS_RDS_HOST&amp;gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;USER_NAME&amp;gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &amp;lt;DB_NAME&amp;gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &amp;lt;BACKUP_NAME&amp;gt;.sql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This file can be compressed&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gzip &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &amp;lt;BACKUP_NAME&amp;gt;.sql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note! &lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt; option forcefully compresses a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;BACKUP_NAME&amp;gt;.sql&lt;/code&gt; even if there already exists a file named as &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;BACKUP_NAME&amp;gt;.sql.gz&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;scp&lt;/code&gt; to download the backup file from the EC2 instance to your local machine:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/path/to/your/*.pem&quot;&lt;/span&gt; ec2-user@&amp;lt;PUBLIC_DNS_NAME&amp;gt;:/path/to/your/backup ~/Downloads/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note! &lt;code class=&quot;highlighter-rouge&quot;&gt;scp&lt;/code&gt; means “secure copy”, which can copy files between computers on a network.&lt;/p&gt;
+
+&lt;p&gt;If needed the backup file can be removed on the EC2 instance:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rm &amp;lt;BACKUP_NAME&amp;gt;.sql.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="SSH" /><category term="MySQL" /><category term="EC2" /><category term="scp" /><category term="Amazon" /><category term="mysqldump" /><category term="macOS" /><category term="terminal" /><summary type="html">We’re going to create a MySQL dump on an EC2 instance and download this file to our local machine.</summary></entry><entry><title type="html">How to add email to MailChimp list using WordPress</title><link href="https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/" rel="alternate" type="text/html" title="How to add email to MailChimp list using WordPress" /><published>2017-03-10T00:00:00+02:00</published><updated>2017-03-10T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress</id><content type="html" xml:base="https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/">&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
 &lt;span class=&quot;nv&quot;&gt;$apiKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'your API key'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$dc&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'MailChimp data center, for example, &quot;us6&quot;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;

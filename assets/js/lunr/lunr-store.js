@@ -53,4 +53,9 @@ var store = [{
         "excerpt":"If you get the following error with npm install  xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instancethen to fix it try   (optional) Install Xcode - go to the AppStore and download the Xcode.  Point the xcode-select developer directory to the appropriate directory from within Xcode.app. To do this, runsudo xcode-select -s /Applications/Xcode.app/Contents/Developer","categories": ["Mac"],
         "tags": ["command line","terminal","Xcode"],
         "url": "https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/",
+        "teaser":null},{
+        "title": "Set up PHP 7.2 on macOS Mojave (with homebrew)",
+        "excerpt":"To check the version of PHP in the terminal, type the following command: php -vor can see what versions of PHP are installed with  brew list | grep phpMaybe it’s worth cleaning up some of the old packages from brew. It’s up to you. Make sure brew is up to date: brew updatebrew upgradeLet’s finally install 7.2 version of PHP brew install php@7.2If you need to have this version of PHP first in your PATH run the following command: echo 'export PATH=\"/usr/local/opt/php@7.2/bin:$PATH\"' &gt;&gt; ~/.bash_profileecho 'export PATH=\"/usr/local/opt/php@7.2/sbin:$PATH\"' &gt;&gt; ~/.bash_profilesource ~/.bash_profileAnd the result? php --versionWhere is a php.ini file? Your .ini file is located in /usr/local/etc/php/7.2/php.ini. To check just type php --iniHow to install extensions? PHP extensions have been removed and now should be installed from PECL: pecl install xdebug","categories": ["Mac"],
+        "tags": ["command line","terminal","PHP","homebrew"],
+        "url": "https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/",
         "teaser":null}]

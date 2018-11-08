@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2018-10-15T23:52:46+03:00</updated><id>https://vyspiansky.github.io/</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Error: tool ’xcodebuild’ requires Xcode… on macOS</title><link href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/" rel="alternate" type="text/html" title="Error: tool 'xcodebuild' requires Xcode... on macOS" /><published>2018-09-28T00:00:00+03:00</published><updated>2018-09-28T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode</id><content type="html" xml:base="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">&lt;p&gt;If you get the following error with &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2018-11-08T20:36:54+02:00</updated><id>https://vyspiansky.github.io/</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Set up PHP 7.2 on macOS Mojave (with homebrew)</title><link href="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/" rel="alternate" type="text/html" title="Set up PHP 7.2 on macOS Mojave (with homebrew)" /><published>2018-11-08T00:00:00+02:00</published><updated>2018-11-08T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew</id><content type="html" xml:base="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/">&lt;p&gt;To check the version of PHP in the terminal, type the following command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or can see what versions of PHP are installed with &lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew list | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;php
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Maybe it’s worth cleaning up some of the old packages from brew. It’s up to you.&lt;/p&gt;
+
+&lt;p&gt;Make sure brew is up to date:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew update
+brew upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s finally install 7.2 version of PHP&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install php@7.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you need to have this version of PHP first in your &lt;code class=&quot;highlighter-rouge&quot;&gt;PATH&lt;/code&gt; run the following command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;/usr/local/opt/php@7.2/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;/usr/local/opt/php@7.2/sbin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the result?&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Where is a php.ini file?&lt;/p&gt;
+
+&lt;p&gt;Your .ini file is located in &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/etc/php/7.2/php.ini&lt;/code&gt;. To check just type&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;--ini&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;How to install extensions?&lt;/p&gt;
+
+&lt;p&gt;PHP extensions have been removed and now should be installed from &lt;code class=&quot;highlighter-rouge&quot;&gt;PECL&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pecl install xdebug
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="command line" /><category term="terminal" /><category term="PHP" /><category term="homebrew" /><summary type="html">To check the version of PHP in the terminal, type the following command:</summary></entry><entry><title type="html">Error: tool ’xcodebuild’ requires Xcode… on macOS</title><link href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/" rel="alternate" type="text/html" title="Error: tool 'xcodebuild' requires Xcode... on macOS" /><published>2018-09-28T00:00:00+03:00</published><updated>2018-09-28T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode</id><content type="html" xml:base="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">&lt;p&gt;If you get the following error with &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instance
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -134,9 +181,4 @@ aws_secret_access_key=&amp;lt;…&amp;gt;
 &lt;p&gt;If needed the backup file can be removed on the EC2 instance:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rm &amp;lt;BACKUP_NAME&amp;gt;.sql.gz
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="SSH" /><category term="MySQL" /><category term="EC2" /><category term="scp" /><category term="Amazon" /><category term="mysqldump" /><category term="macOS" /><category term="terminal" /><summary type="html">We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine.</summary></entry><entry><title type="html">Make a Zip Archive without a .DS_Store file on macOS</title><link href="https://vyspiansky.github.io/2017/04/07/zip-archive-without-ds-store-macos/" rel="alternate" type="text/html" title="Make a Zip Archive without a .DS_Store file on macOS" /><published>2017-04-07T00:00:00+03:00</published><updated>2017-04-07T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2017/04/07/zip-archive-without-ds-store-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2017/04/07/zip-archive-without-ds-store-macos/">&lt;p&gt;Let’s compress folder (current one) without the &lt;code class=&quot;highlighter-rouge&quot;&gt;.DS_Store&lt;/code&gt; file&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;zip &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &amp;lt;name&amp;gt;.zip &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*.DS_Store&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Note!&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;.DS_Store&lt;/code&gt; is a file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image.&lt;/p&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="Zip" /><category term="macOS" /><category term="terminal" /><summary type="html">Let’s compress folder (current one) without the .DS_Store file</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="SSH" /><category term="MySQL" /><category term="EC2" /><category term="scp" /><category term="Amazon" /><category term="mysqldump" /><category term="macOS" /><category term="terminal" /><summary type="html">We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine.</summary></entry></feed>

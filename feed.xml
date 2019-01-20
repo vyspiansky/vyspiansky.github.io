@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2018-11-08T20:36:54+02:00</updated><id>https://vyspiansky.github.io/</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Set up PHP 7.2 on macOS Mojave (with homebrew)</title><link href="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/" rel="alternate" type="text/html" title="Set up PHP 7.2 on macOS Mojave (with homebrew)" /><published>2018-11-08T00:00:00+02:00</published><updated>2018-11-08T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew</id><content type="html" xml:base="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/">&lt;p&gt;To check the version of PHP in the terminal, type the following command:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2019-01-20T18:04:27+02:00</updated><id>https://vyspiansky.github.io/</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">How to fix imprecise calculations in JavaScript</title><link href="https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript/" rel="alternate" type="text/html" title="How to fix imprecise calculations in JavaScript" /><published>2019-01-20T00:00:00+02:00</published><updated>2019-01-20T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript</id><content type="html" xml:base="https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript/">&lt;p&gt;What is it about? Try to execute some of the following examples in the browser console (or somehow using JavaScript) and you will see that sometimes there are small computational errors.&lt;/p&gt;
+
+&lt;p&gt;Browser console output:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 0.1 + 0.2
+0.30000000000000004
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 0.1 * 0.2
+0.020000000000000004
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 16.08 * 100
+1607.9999999999998
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 0.1.toFixed(20)
+&quot;0.10000000000000000555&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 9999999999999999
+10000000000000000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Don’t get me wrong, this is certainly not a problem of the language itself. The same thing happens in Java, C, PHP, Ruby, etc. If you are interested in the details, please read more in &lt;a href=&quot;https://javascript.info/number#imprecise-calculations&quot;&gt;this article&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Below you will find the simplest solutions that allow to “fix” this inaccuracy.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution-1&quot;&gt;Solution #1&lt;/h2&gt;
+
+&lt;p&gt;Let’s use the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision&quot;&gt;toPrecision&lt;/a&gt; method to format a number to a specified precision.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Pedro Ladaria's solution&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;parseFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toPrecision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Browser console:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; strip(0.1 + 0.2);
+0.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; strip(0.1 * 0.2);
+0.02
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; strip(16.08 * 100);
+1608
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;solution-2&quot;&gt;Solution #2&lt;/h2&gt;
+
+&lt;p&gt;Let’s format a number using fixed-point notation into a string with 2 (up to 20) digits after the decimal point using the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed&quot;&gt;toFixed&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;p&gt;Browser console:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; (0.1 + 0.2).toFixed(2)
+&quot;0.30&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; (0.1 * 0.2).toFixed(2)
+&quot;0.02&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; (16.08 * 100).toFixed(2)
+&quot;1608.00&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It’s not hard to get a number as a return value. For instance,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; parseFloat((0.1 + 0.2).toFixed(2))
+0.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="calculation" /><category term="parseFloat" /><category term="toFixed" /><summary type="html">What is it about? Try to execute some of the following examples in the browser console (or somehow using JavaScript) and you will see that sometimes there are small computational errors.</summary></entry><entry><title type="html">Set up PHP 7.2 on macOS Mojave (with homebrew)</title><link href="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/" rel="alternate" type="text/html" title="Set up PHP 7.2 on macOS Mojave (with homebrew)" /><published>2018-11-08T00:00:00+02:00</published><updated>2018-11-08T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew</id><content type="html" xml:base="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/">&lt;p&gt;To check the version of PHP in the terminal, type the following command:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -144,41 +218,4 @@ aws_secret_access_key=&amp;lt;…&amp;gt;
    UseKeychain yes
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Source: &lt;a href=&quot;https://apple.stackexchange.com/questions/254468/macos-sierra-doesn-t-seem-to-remember-ssh-keys-between-reboots&quot;&gt;macOS Sierra doesn’t seem to remember SSH keys between reboots&lt;/a&gt;&lt;/p&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="AWS" /><category term="macOS" /><category term="SSH" /><category term="SSH key" /><summary type="html">To list all keys run</summary></entry><entry><title type="html">Create MySQL dump on EC2 instance and download it</title><link href="https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local-machine/" rel="alternate" type="text/html" title="Create MySQL dump on EC2 instance and download it" /><published>2017-05-15T00:00:00+03:00</published><updated>2017-05-15T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local-machine</id><content type="html" xml:base="https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local-machine/">&lt;p&gt;We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine.&lt;/p&gt;
-
-&lt;p&gt;First of all let’s connect to the instance using a &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/path/to/your/*.pem&quot;&lt;/span&gt; &amp;lt;EC2_USERNAME&amp;gt;@&amp;lt;PUBLIC_DNS_NAME&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;where&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/your/*.pem&lt;/code&gt; is the location where the PEM key is stored.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;EC2_USERNAME&lt;/code&gt; is the username you log in with. If you used Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PUBLIC_DNS_NAME&lt;/code&gt; is the IP or DNS alias of the instance.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then use the &lt;code class=&quot;highlighter-rouge&quot;&gt;mysqldump&lt;/code&gt; utility to export a dump file from the database:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mysqldump &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &amp;lt;AMAZONAWS_RDS_HOST&amp;gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;USER_NAME&amp;gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &amp;lt;DB_NAME&amp;gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &amp;lt;BACKUP_NAME&amp;gt;.sql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This file can be compressed&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gzip &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &amp;lt;BACKUP_NAME&amp;gt;.sql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Note!&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt; option forcefully compresses a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;BACKUP_NAME&amp;gt;.sql&lt;/code&gt; even if there already exists a file named as &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;BACKUP_NAME&amp;gt;.sql.gz&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;scp&lt;/code&gt; to download the backup file from the EC2 instance to your local machine:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/path/to/your/*.pem&quot;&lt;/span&gt; &amp;lt;EC2_USERNAME&amp;gt;@&amp;lt;PUBLIC_DNS_NAME&amp;gt;:/path/to/your/backup ~/Downloads/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Note!&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;scp&lt;/code&gt; means “secure copy”, which can copy files between computers on a network.&lt;/p&gt;
-
-&lt;p&gt;If needed the backup file can be removed on the EC2 instance:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rm &amp;lt;BACKUP_NAME&amp;gt;.sql.gz
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="SSH" /><category term="MySQL" /><category term="EC2" /><category term="scp" /><category term="Amazon" /><category term="mysqldump" /><category term="macOS" /><category term="terminal" /><summary type="html">We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine.</summary></entry></feed>
+&lt;p&gt;Source: &lt;a href=&quot;https://apple.stackexchange.com/questions/254468/macos-sierra-doesn-t-seem-to-remember-ssh-keys-between-reboots&quot;&gt;macOS Sierra doesn’t seem to remember SSH keys between reboots&lt;/a&gt;&lt;/p&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="AWS" /><category term="macOS" /><category term="SSH" /><category term="SSH key" /><summary type="html">To list all keys run</summary></entry></feed>

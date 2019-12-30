@@ -307,7 +307,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error message, we will use <code class="highlighter-rouge">setCustomValidity()</code> method.</p>
+        <p>There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error message, we will use <code class="language-plaintext highlighter-rouge">setCustomValidity()</code> method.</p>
 
 <p>Here’s how the error message will look in the Google Chrome browser when trying to send a form without selecting a checkbox:</p>
 
@@ -338,18 +338,18 @@
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
-<p>A content of the <code class="highlighter-rouge">script.js</code> file:</p>
+<p>A content of the <code class="language-plaintext highlighter-rouge">script.js</code> file:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#sectionForm'</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">checkboxes</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">'input[type=checkbox]'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#sectionForm</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">checkboxes</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">input[type=checkbox]</span><span class="dl">'</span><span class="p">);</span>
     <span class="kd">const</span> <span class="nx">checkboxLength</span> <span class="o">=</span> <span class="nx">checkboxes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
     <span class="kd">const</span> <span class="nx">firstCheckbox</span> <span class="o">=</span> <span class="nx">checkboxLength</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">checkboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
 
     <span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">firstCheckbox</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">checkboxLength</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">checkboxes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="nx">checkValidity</span><span class="p">);</span>
+                <span class="nx">checkboxes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="nx">checkValidity</span><span class="p">);</span>
             <span class="p">}</span>
 
             <span class="nx">checkValidity</span><span class="p">();</span>
@@ -365,7 +365,7 @@
     <span class="p">}</span>
 
     <span class="kd">function</span> <span class="nx">checkValidity</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="o">!</span><span class="nx">isChecked</span><span class="p">()</span> <span class="p">?</span> <span class="s1">'At least one checkbox must be selected.'</span> <span class="p">:</span> <span class="s1">''</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="o">!</span><span class="nx">isChecked</span><span class="p">()</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">At least one checkbox must be selected.</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="p">;</span>
         <span class="nx">firstCheckbox</span><span class="p">.</span><span class="nx">setCustomValidity</span><span class="p">(</span><span class="nx">errorMessage</span><span class="p">);</span>
     <span class="p">}</span>
 
@@ -450,7 +450,8 @@
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/2019/12/02/apache-bench-for-load-testing/" class="pagination--pager" title="Using Apache Bench for simple load testing
+">Next</a>
     
   </nav>
 
@@ -473,6 +474,34 @@
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2019/12/02/apache-bench-for-load-testing/" rel="permalink">Using Apache Bench for simple load testing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">The following command runs 100 requests in total with 10 concurrent requests to example.com.
+
+</p>
+  </article>
+</div>
         
           
 
@@ -551,35 +580,6 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">If you get the following error with npm install
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/2018/08/30/launch-sublime-text-3-terminal/" rel="permalink">Launch Sublime Text 3 from the terminal
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">$ echo $PATH
-
 
 </p>
   </article>

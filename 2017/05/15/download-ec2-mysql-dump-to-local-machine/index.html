@@ -309,7 +309,7 @@
         
         <p>We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine.</p>
 
-<p>First of all let’s connect to the instance using a <code class="highlighter-rouge">ssh</code> command:</p>
+<p>First of all let’s connect to the instance using a <code class="language-plaintext highlighter-rouge">ssh</code> command:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-i</span> <span class="s2">"/path/to/your/*.pem"</span> &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;
 </code></pre></div></div>
@@ -317,33 +317,33 @@
 <p>where</p>
 
 <ul>
-  <li><code class="highlighter-rouge">/path/to/your/*.pem</code> is the location where the PEM key is stored.</li>
-  <li><code class="highlighter-rouge">EC2_USERNAME</code> is the username you log in with. If you used Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.</li>
-  <li><code class="highlighter-rouge">PUBLIC_DNS_NAME</code> is the IP or DNS alias of the instance.</li>
+  <li><code class="language-plaintext highlighter-rouge">/path/to/your/*.pem</code> is the location where the PEM key is stored.</li>
+  <li><code class="language-plaintext highlighter-rouge">EC2_USERNAME</code> is the username you log in with. If you used Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.</li>
+  <li><code class="language-plaintext highlighter-rouge">PUBLIC_DNS_NAME</code> is the IP or DNS alias of the instance.</li>
 </ul>
 
-<p>Then use the <code class="highlighter-rouge">mysqldump</code> utility to export a dump file from the database:</p>
+<p>Then use the <code class="language-plaintext highlighter-rouge">mysqldump</code> utility to export a dump file from the database:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysqldump <span class="nt">-h</span> &lt;AMAZONAWS_RDS_HOST&gt; <span class="nt">-u</span> &lt;USER_NAME&gt; <span class="nt">-p</span> &lt;DB_NAME&gt; <span class="o">&gt;</span> &lt;BACKUP_NAME&gt;.sql
 </code></pre></div></div>
 
 <p>This file can be compressed</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gzip <span class="nt">-f</span> &lt;BACKUP_NAME&gt;.sql
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">gzip</span> <span class="nt">-f</span> &lt;BACKUP_NAME&gt;.sql
 </code></pre></div></div>
 
-<p><strong>Note!</strong> <code class="highlighter-rouge">-f</code> option forcefully compresses a file named <code class="highlighter-rouge">&lt;BACKUP_NAME&gt;.sql</code> even if there already exists a file named as <code class="highlighter-rouge">&lt;BACKUP_NAME&gt;.sql.gz</code>.</p>
+<p><strong>Note!</strong> <code class="language-plaintext highlighter-rouge">-f</code> option forcefully compresses a file named <code class="language-plaintext highlighter-rouge">&lt;BACKUP_NAME&gt;.sql</code> even if there already exists a file named as <code class="language-plaintext highlighter-rouge">&lt;BACKUP_NAME&gt;.sql.gz</code>.</p>
 
-<p>Use <code class="highlighter-rouge">scp</code> to download the backup file from the EC2 instance to your local machine:</p>
+<p>Use <code class="language-plaintext highlighter-rouge">scp</code> to download the backup file from the EC2 instance to your local machine:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-i</span> <span class="s2">"/path/to/your/*.pem"</span> &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;:/path/to/your/backup ~/Downloads/
 </code></pre></div></div>
 
-<p><strong>Note!</strong> <code class="highlighter-rouge">scp</code> means “secure copy”, which can copy files between computers on a network.</p>
+<p><strong>Note!</strong> <code class="language-plaintext highlighter-rouge">scp</code> means “secure copy”, which can copy files between computers on a network.</p>
 
 <p>If needed the backup file can be removed on the EC2 instance:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm &lt;BACKUP_NAME&gt;.sql.gz
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> &lt;BACKUP_NAME&gt;.sql.gz
 </code></pre></div></div>
 
         
@@ -485,6 +485,34 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/2019/12/02/apache-bench-for-load-testing/" rel="permalink">Using Apache Bench for simple load testing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">The following command runs 100 requests in total with 10 concurrent requests to example.com.
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/" rel="permalink">At least one checkbox must be selected (checked)
 </a>
       
@@ -556,36 +584,9 @@
   </article>
 </div>
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/2018/09/28/xcodebuild-requires-xcode/" rel="permalink">Error: tool ’xcodebuild’ requires Xcode… on macOS
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">If you get the following error with npm install
-
-</p>
-  </article>
-</div>
-        
       </div>
     </div>
+  
   
 </div>
     </div>

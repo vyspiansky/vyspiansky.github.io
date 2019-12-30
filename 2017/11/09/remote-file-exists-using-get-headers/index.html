@@ -307,9 +307,9 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>As you probably know, a <code class="highlighter-rouge">get_headers</code> function in PHP typically returns something similar to:</p>
+        <p>As you probably know, a <code class="language-plaintext highlighter-rouge">get_headers</code> function in PHP typically returns something similar to:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Array
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Array
 (
     [0] =&gt; HTTP/1.1 200 OK
     [1] =&gt; Content-Type: image/png
@@ -337,19 +337,19 @@
 
 <span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/100px-PHP-logo.svg.png'</span><span class="p">;</span>
 <span class="nv">$res</span> <span class="o">=</span> <span class="nx">remote_file_exists</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
-<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$res</span><span class="p">);</span> <span class="c1">// Output: bool(true)
-</span>
-<span class="c1">// ... and use a fake URL
-</span><span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/100px_FAKE-PHP-logo.svg.png'</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$res</span><span class="p">);</span> <span class="c1">// Output: bool(true)</span>
+
+<span class="c1">// ... and use a fake URL</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/100px_FAKE-PHP-logo.svg.png'</span><span class="p">;</span>
 <span class="nv">$res</span> <span class="o">=</span> <span class="nx">remote_file_exists</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
-<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$res</span><span class="p">);</span> <span class="c1">// Output: bool(false)
-</span></code></pre></div></div>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$res</span><span class="p">);</span> <span class="c1">// Output: bool(false)</span>
+</code></pre></div></div>
 
-<p>The first thing to notice is that the response message might have the different version of the protocol: <code class="highlighter-rouge">HTTP/1.0 404 Not Found</code>, <code class="highlighter-rouge">HTTP/1.1 404 Not Found</code> etc.</p>
+<p>The first thing to notice is that the response message might have the different version of the protocol: <code class="language-plaintext highlighter-rouge">HTTP/1.0 404 Not Found</code>, <code class="language-plaintext highlighter-rouge">HTTP/1.1 404 Not Found</code> etc.</p>
 
-<p>And the second one - <code class="highlighter-rouge">get_headers()</code> won’t work properly in case <a href="https://www.php.net/manual/en/filesystem.configuration.php">allow_url_fopen</a> is disabled.</p>
+<p>And the second one - <code class="language-plaintext highlighter-rouge">get_headers()</code> won’t work properly in case <a href="https://www.php.net/manual/en/filesystem.configuration.php">allow_url_fopen</a> is disabled.</p>
 
-<p>To check if <code class="highlighter-rouge">allow_url_fopen</code> is enabled or not, you can use <code class="highlighter-rouge">ini_get()</code>:</p>
+<p>To check if <code class="language-plaintext highlighter-rouge">allow_url_fopen</code> is enabled or not, you can use <code class="language-plaintext highlighter-rouge">ini_get()</code>:</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 <span class="k">if</span> <span class="p">(</span><span class="nb">ini_get</span><span class="p">(</span><span class="s1">'allow_url_fopen'</span><span class="p">))</span> <span class="p">{</span>
@@ -357,9 +357,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>If it’s possible edit your <code class="highlighter-rouge">php.ini</code> file, find <code class="highlighter-rouge">allow_url_fopen</code> and specify</p>
+<p>If it’s possible edit your <code class="language-plaintext highlighter-rouge">php.ini</code> file, find <code class="language-plaintext highlighter-rouge">allow_url_fopen</code> and specify</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allow_url_fopen=1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allow_url_fopen=1
 </code></pre></div></div>
 
 <p>In case you don’t have access to do this, use the following code in your PHP script (from the very beginning):</p>
@@ -479,6 +479,34 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/2019/12/02/apache-bench-for-load-testing/" rel="permalink">Using Apache Bench for simple load testing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">The following command runs 100 requests in total with 10 concurrent requests to example.com.
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/" rel="permalink">At least one checkbox must be selected (checked)
 </a>
       
@@ -550,36 +578,9 @@
   </article>
 </div>
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/2018/09/28/xcodebuild-requires-xcode/" rel="permalink">Error: tool ’xcodebuild’ requires Xcode… on macOS
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">If you get the following error with npm install
-
-</p>
-  </article>
-</div>
-        
       </div>
     </div>
+  
   
 </div>
     </div>

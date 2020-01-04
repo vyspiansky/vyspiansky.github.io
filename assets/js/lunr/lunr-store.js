@@ -4,6 +4,11 @@ var store = [{
         "tags": ["MailChimp"],
         "url": "https://vyspiansky.github.io/2017/03/10/how-to-add-email-to-mailchimp-list-using-wordpress/",
         "teaser":null},{
+        "title": "Extra Ukrainian letters are not sorted well",
+        "excerpt":"The problem is that Ukrainian letters are not sorted correctly by the alphabet, ie “і” and “є” are preceded by “а”, “б”, while using the ORDER BY operator in MySQL. The possible reason is that a mistaken collation value has been used. To correctly sort the Ukrainian letters, the value must be utf8_unicode_ci. Note! It’s worth pointing out that utf8_unicode_ci is more accurate than utf8_general_ci for Bulgarian, Belarusian, Macedonian, Russian, Serbian and Ukrainian languages. While utf8_general_ci is fine only for Russian and Bulgarian subset of Cyrillic. We can specify the collation directly in a query SELECT *FROM &lt;table_name&gt;ORDER BY &lt;column_name&gt;COLLATE utf8_unicode_ci;or change it  permanently. 1) Сhange column collation: ALTER TABLE &lt;table_name&gt;MODIFY &lt;column_name&gt; VARCHAR(255)CHARACTER SET utf8COLLATE utf8_unicode_ci;2) Change table collation: ALTER TABLE &lt;table_name&gt;CONVERT TOCHARACTER SET utf8COLLATE utf8_unicode_ci;3) Change database collation: ALTER DATABASE &lt;db_name&gt;CHARACTER SET utf8COLLATE utf8_unicode_ci;","categories": ["MySQL"],
+        "tags": ["collation","utf8_unicode_ci","Cyrillic","ORDER BY"],
+        "url": "https://vyspiansky.github.io/2017/03/10/utf-8-ukrainian-letters-sorting-in-mysql/",
+        "teaser":null},{
         "title": "Make a Zip Archive without a .DS_Store file on macOS",
         "excerpt":"Let’s compress folder (current one) without the .DS_Store file zip -r &lt;name&gt;.zip . -x \"*.DS_Store\"Note! .DS_Store is a file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image. ","categories": ["Mac"],
         "tags": ["Zip","macOS","terminal"],

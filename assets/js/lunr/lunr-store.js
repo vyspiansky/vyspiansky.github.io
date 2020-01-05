@@ -15,8 +15,8 @@ var store = [{
         "url": "https://vyspiansky.github.io/2017/04/07/zip-archive-without-ds-store-macos/",
         "teaser":null},{
         "title": "Create MySQL dump on EC2 instance and download it",
-        "excerpt":"We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine. First of all let’s connect to the instance using a ssh command: ssh -i \"/path/to/your/*.pem\" &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;where   /path/to/your/*.pem is the location where the PEM key is stored.  EC2_USERNAME is the username you log in with. If you used Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.  PUBLIC_DNS_NAME is the IP or DNS alias of the instance.Then use the mysqldump utility to export a dump file from the database: mysqldump -h &lt;AMAZONAWS_RDS_HOST&gt; -u &lt;USER_NAME&gt; -p &lt;DB_NAME&gt; &gt; &lt;BACKUP_NAME&gt;.sqlThis file can be compressed gzip -f &lt;BACKUP_NAME&gt;.sqlNote! -f option forcefully compresses a file named &lt;BACKUP_NAME&gt;.sql even if there already exists a file named as &lt;BACKUP_NAME&gt;.sql.gz. Use scp to download the backup file from the EC2 instance to your local machine: scp -i \"/path/to/your/*.pem\" &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;:/path/to/your/backup ~/Downloads/Note! scp means “secure copy”, which can copy files between computers on a network. If needed the backup file can be removed on the EC2 instance: rm &lt;BACKUP_NAME&gt;.sql.gz","categories": ["DevOps","Databases"],
-        "tags": ["SSH","MySQL","EC2","scp","Amazon","mysqldump","macOS","terminal"],
+        "excerpt":"We’re going to create a MySQL dump on an EC2 instance, compress and download this file to our local (Mac) machine. First of all let’s connect to the instance using a ssh command: ssh -i \"/path/to/your/*.pem\" &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;where   /path/to/your/*.pem is the location where the PEM key is stored.  EC2_USERNAME is the username you log in with. If you used Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.  PUBLIC_DNS_NAME is the IP or DNS alias of the instance.Then use the mysqldump utility to export a dump file from the database: mysqldump -h &lt;AMAZONAWS_RDS_HOST&gt; -u &lt;USER_NAME&gt; -p &lt;DB_NAME&gt; &gt; &lt;BACKUP_NAME&gt;.sqlThis file can be compressed gzip -f &lt;BACKUP_NAME&gt;.sqlNote! -f option forcefully compresses a file named &lt;BACKUP_NAME&gt;.sql even if there already exists a file named as &lt;BACKUP_NAME&gt;.sql.gz. Use scp to download the backup file from the EC2 instance to your local machine: scp -i \"/path/to/your/*.pem\" &lt;EC2_USERNAME&gt;@&lt;PUBLIC_DNS_NAME&gt;:/path/to/your/backup ~/Downloads/Note! scp means “secure copy”, which can copy files between computers on a network. If needed the backup file can be removed on the EC2 instance: rm &lt;BACKUP_NAME&gt;.sql.gz","categories": ["DevOps","MySQL"],
+        "tags": ["SSH","EC2","scp","Amazon","mysqldump","macOS","terminal"],
         "url": "https://vyspiansky.github.io/2017/05/15/download-ec2-mysql-dump-to-local-machine/",
         "teaser":null},{
         "title": "SSH keys are lost after macOS High Sierra reboot",
@@ -35,8 +35,8 @@ var store = [{
         "url": "https://vyspiansky.github.io/2018/03/01/aws-credentials/",
         "teaser":null},{
         "title": "Next AUTO_INCREMENT value",
-        "excerpt":"To get the next AUTO_INCREMENT value from a table run the following query: SELECT AUTO_INCREMENTFROM information_schema.TABLESWHERE TABLE_SCHEMA = \"databaseName\"AND TABLE_NAME = \"tableName\"","categories": ["Databases"],
-        "tags": ["AUTO_INCREMENT","MySQL"],
+        "excerpt":"To get the next AUTO_INCREMENT value from a table run the following query: SELECT AUTO_INCREMENTFROM information_schema.TABLESWHERE TABLE_SCHEMA = \"databaseName\"AND TABLE_NAME = \"tableName\"","categories": ["MySQL"],
+        "tags": ["AUTO_INCREMENT"],
         "url": "https://vyspiansky.github.io/2018/03/01/next-auto-increment/",
         "teaser":null},{
         "title": "PHP 7 Compatibility Checker (php7cc)",

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2020-01-09T17:53:17+02:00</updated><id>https://vyspiansky.github.io/feed.xml</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">How to Write to NTFS Drives in macOS Mojave</title><link href="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/" rel="alternate" type="text/html" title="How to Write to NTFS Drives in macOS Mojave" /><published>2020-01-09T00:00:00+02:00</published><updated>2020-01-09T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave</id><content type="html" xml:base="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/">&lt;p&gt;In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2020-01-09T17:58:52+02:00</updated><id>https://vyspiansky.github.io/feed.xml</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">How to Write to NTFS Drives in macOS Mojave</title><link href="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/" rel="alternate" type="text/html" title="How to Write to NTFS Drives in macOS Mojave" /><published>2020-01-09T00:00:00+02:00</published><updated>2020-01-09T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave</id><content type="html" xml:base="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/">&lt;p&gt;In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.&lt;/p&gt;
 
 &lt;p&gt;In other words,&lt;/p&gt;
 
@@ -16,7 +16,7 @@
 &lt;p&gt;If it’s your case, read this&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://support-en.wd.com/app/answers/detail/a_id/20821&quot; title=&quot;How to Format a WD hard drive to exFAT or FAT32 File System&quot;&gt;https://support-en.wd.com/app/answers/detail/a_id/20821&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://support-en.wd.com/app/answers/detail/a_id/20821&quot; title=&quot;How to Format a WD hard drive to exFAT or FAT32 File System&quot; target=&quot;_blank&quot;&gt;https://support-en.wd.com/app/answers/detail/a_id/20821&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;However you will lose all the data, and in case you forget to backup first, it will be gone forever.&lt;/p&gt;
@@ -28,7 +28,7 @@
 &lt;p&gt;If you want to take the risk and try them out, read the following tutorial&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/&quot; title=&quot;How to Enable NTFS Write Support in Mac OS X&quot;&gt;http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/&quot; title=&quot;How to Enable NTFS Write Support in Mac OS X&quot; target=&quot;_blank&quot;&gt;http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;This solution could potentially cause problems with your NTFS file system, so use it with caution.&lt;/p&gt;

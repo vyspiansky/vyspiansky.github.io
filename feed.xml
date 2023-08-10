@@ -1,348 +1,348 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2021-06-23T12:12:23+03:00</updated><id>https://vyspiansky.github.io/feed.xml</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Too many open files error on macOS</title><link href="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/" rel="alternate" type="text/html" title="Too many open files error on macOS" /><published>2021-06-22T00:00:00+03:00</published><updated>2021-06-22T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/">&lt;p&gt;We’re going to increase an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ulimit&lt;/code&gt; setting on macOS, but first let’s obtain the current limit of file descriptors via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ulimit -n&lt;/code&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2023-08-10T23:11:15+03:00</updated><id>https://vyspiansky.github.io/feed.xml</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Too many open files error on macOS</title><link href="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/" rel="alternate" type="text/html" title="Too many open files error on macOS" /><published>2021-06-22T00:00:00+03:00</published><updated>2021-06-22T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/"><![CDATA[<p>We’re going to increase an <code class="language-plaintext highlighter-rouge">ulimit</code> setting on macOS, but first let’s obtain the current limit of file descriptors via <code class="language-plaintext highlighter-rouge">ulimit -n</code>.</p>
 
-&lt;p&gt;In case this value has not been changed before, a maximum number of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;open files&lt;/code&gt; most likely will be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;256&lt;/code&gt;.&lt;/p&gt;
+<p>In case this value has not been changed before, a maximum number of <code class="language-plaintext highlighter-rouge">open files</code> most likely will be <code class="language-plaintext highlighter-rouge">256</code>.</p>
 
-&lt;p&gt;To increase this setting execute&lt;/p&gt;
+<p>To increase this setting execute</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ulimit&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 12288
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ulimit</span> <span class="nt">-n</span> 12288
+</code></pre></div></div>
 
-&lt;p&gt;where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;12288&lt;/code&gt; – a desired value.&lt;/p&gt;
+<p>where <code class="language-plaintext highlighter-rouge">12288</code> – a desired value.</p>
 
-&lt;p&gt;However keep in mind that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ulimit&lt;/code&gt; changes the limit only for current session. So put this command to your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt; file:&lt;/p&gt;
+<p>However keep in mind that <code class="language-plaintext highlighter-rouge">ulimit</code> changes the limit only for current session. So put this command to your <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> file:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ulimit -n 12288'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="macOS" /><category term="ulimit" /><summary type="html">We’re going to increase an ulimit setting on macOS, but first let’s obtain the current limit of file descriptors via ulimit -n.</summary></entry><entry><title type="html">How to Write to NTFS Drives in macOS Mojave</title><link href="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/" rel="alternate" type="text/html" title="How to Write to NTFS Drives in macOS Mojave" /><published>2020-01-09T00:00:00+02:00</published><updated>2020-01-09T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave</id><content type="html" xml:base="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/">&lt;p&gt;In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.&lt;/p&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'ulimit -n 12288'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="Mac" /><category term="macOS" /><category term="ulimit" /><summary type="html"><![CDATA[We’re going to increase an ulimit setting on macOS, but first let’s obtain the current limit of file descriptors via ulimit -n.]]></summary></entry><entry><title type="html">How to Write to NTFS Drives in macOS Mojave</title><link href="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/" rel="alternate" type="text/html" title="How to Write to NTFS Drives in macOS Mojave" /><published>2020-01-09T00:00:00+02:00</published><updated>2020-01-09T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave</id><content type="html" xml:base="https://vyspiansky.github.io/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/"><![CDATA[<p>In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.</p>
 
-&lt;p&gt;In other words,&lt;/p&gt;
+<p>In other words,</p>
 
-&lt;ul&gt;
-  &lt;li&gt;macOS computers mount NTFS formatted USB drives as “Read Only”;&lt;/li&gt;
-  &lt;li&gt;“Read Only” mounted drives cannot be written to with macOS computers.&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>macOS computers mount NTFS formatted USB drives as “Read Only”;</li>
+  <li>“Read Only” mounted drives cannot be written to with macOS computers.</li>
+</ul>
 
-&lt;p&gt;There are several ways to work around this problem.&lt;/p&gt;
+<p>There are several ways to work around this problem.</p>
 
-&lt;h2 id=&quot;1-change-drive-format-to-exfat&quot;&gt;1. Change Drive Format to exFAT&lt;/h2&gt;
+<h2 id="1-change-drive-format-to-exfat">1. Change Drive Format to exFAT</h2>
 
-&lt;p&gt;If you’re going to be transferring files between Mac’s and PC’s use exFAT. The macOS Mojave supports exFAT file format and since Windows does too, converting an NTFS drive to exFAT may solve the problem of accessing the files it contains on both platforms.&lt;/p&gt;
+<p>If you’re going to be transferring files between Mac’s and PC’s use exFAT. The macOS Mojave supports exFAT file format and since Windows does too, converting an NTFS drive to exFAT may solve the problem of accessing the files it contains on both platforms.</p>
 
-&lt;p&gt;If it’s your case, read this&lt;/p&gt;
+<p>If it’s your case, read this</p>
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://support-en.wd.com/app/answers/detail/a_id/20821&quot; title=&quot;How to Format a WD hard drive to exFAT or FAT32 File System&quot; target=&quot;_blank&quot;&gt;https://support-en.wd.com/app/answers/detail/a_id/20821&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li><a href="https://support-en.wd.com/app/answers/detail/a_id/20821" title="How to Format a WD hard drive to exFAT or FAT32 File System" target="_blank">https://support-en.wd.com/app/answers/detail/a_id/20821</a></li>
+</ul>
 
-&lt;p&gt;However you will lose all the data, and in case you forget to backup first, it will be gone forever.&lt;/p&gt;
+<p>However you will lose all the data, and in case you forget to backup first, it will be gone forever.</p>
 
-&lt;h2 id=&quot;2-apples-experimental-ntfs-write-support&quot;&gt;2. Apple’s Experimental NTFS-Write Support&lt;/h2&gt;
+<h2 id="2-apples-experimental-ntfs-write-support">2. Apple’s Experimental NTFS-Write Support</h2>
 
-&lt;p&gt;The macOS includes experimental support for writing to NTFS drives. However, it’s off by default and requires some messing around in the terminal to enable it.&lt;/p&gt;
+<p>The macOS includes experimental support for writing to NTFS drives. However, it’s off by default and requires some messing around in the terminal to enable it.</p>
 
-&lt;p&gt;If you want to take the risk and try them out, read the following tutorial&lt;/p&gt;
+<p>If you want to take the risk and try them out, read the following tutorial</p>
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/&quot; title=&quot;How to Enable NTFS Write Support in Mac OS X&quot; target=&quot;_blank&quot;&gt;http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li><a href="http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/" title="How to Enable NTFS Write Support in Mac OS X" target="_blank">http://osxdaily.com/2013/10/02/enable-ntfs-write-support-mac-os-x/</a></li>
+</ul>
 
-&lt;p&gt;This solution could potentially cause problems with your NTFS file system, so use it with caution.&lt;/p&gt;
+<p>This solution could potentially cause problems with your NTFS file system, so use it with caution.</p>
 
-&lt;h2 id=&quot;3-third-party-ntfs-drivers&quot;&gt;3. Third Party NTFS Drivers&lt;/h2&gt;
+<h2 id="3-third-party-ntfs-drivers">3. Third Party NTFS Drivers</h2>
 
-&lt;p&gt;Last but not least, there are third party paid drivers that allow Mac users to read, write and access NTFS formatted USB drives without reformatting the drive with exFAT or using of experimental features.&lt;/p&gt;
+<p>Last but not least, there are third party paid drivers that allow Mac users to read, write and access NTFS formatted USB drives without reformatting the drive with exFAT or using of experimental features.</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Microsoft NTFS for Mac by Paragon Software&lt;/li&gt;
-  &lt;li&gt;Microsoft NTFS for Mac by Tuxera&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="NTFS" /><category term="macOS" /><category term="exFAT" /><summary type="html">In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.</summary></entry><entry><title type="html">Using Apache Bench for simple load testing</title><link href="https://vyspiansky.github.io/2019/12/02/apache-bench-for-load-testing/" rel="alternate" type="text/html" title="Using Apache Bench for simple load testing" /><published>2019-12-02T00:00:00+02:00</published><updated>2019-12-02T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2019/12/02/apache-bench-for-load-testing</id><content type="html" xml:base="https://vyspiansky.github.io/2019/12/02/apache-bench-for-load-testing/">&lt;p&gt;The following command runs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt; requests in total with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;10&lt;/code&gt; concurrent requests to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;example.com&lt;/code&gt;.&lt;/p&gt;
+<ul>
+  <li>Microsoft NTFS for Mac by Paragon Software</li>
+  <li>Microsoft NTFS for Mac by Tuxera</li>
+</ul>]]></content><author><name>Ihor Vyspiansky</name></author><category term="Mac" /><category term="NTFS" /><category term="macOS" /><category term="exFAT" /><summary type="html"><![CDATA[In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.]]></summary></entry><entry><title type="html">Using Apache Bench for simple load testing</title><link href="https://vyspiansky.github.io/2019/12/02/apache-bench-for-load-testing/" rel="alternate" type="text/html" title="Using Apache Bench for simple load testing" /><published>2019-12-02T00:00:00+02:00</published><updated>2019-12-02T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2019/12/02/apache-bench-for-load-testing</id><content type="html" xml:base="https://vyspiansky.github.io/2019/12/02/apache-bench-for-load-testing/"><![CDATA[<p>The following command runs <code class="language-plaintext highlighter-rouge">100</code> requests in total with <code class="language-plaintext highlighter-rouge">10</code> concurrent requests to <code class="language-plaintext highlighter-rouge">example.com</code>.</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 http://example.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ab <span class="nt">-n</span> 100 <span class="nt">-c</span> 10 http://example.com/
+</code></pre></div></div>
 
-&lt;p&gt;&lt;strong&gt;Note!&lt;/strong&gt; ApacheBench (ab) is installed on macOS by default.&lt;/p&gt;
+<p><strong>Note!</strong> ApacheBench (ab) is installed on macOS by default.</p>
 
-&lt;p&gt;Output will contain a lot of useful information. However firstly it’s worth paying attention to the following values:&lt;/p&gt;
+<p>Output will contain a lot of useful information. However firstly it’s worth paying attention to the following values:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Requests per second&lt;/li&gt;
-  &lt;li&gt;Failed requests&lt;/li&gt;
-  &lt;li&gt;Time per request&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Requests per second</li>
+  <li>Failed requests</li>
+  <li>Time per request</li>
+</ul>
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-H&lt;/code&gt; flag allows you to append extra headers to the request:&lt;/p&gt;
+<p>The <code class="language-plaintext highlighter-rouge">-H</code> flag allows you to append extra headers to the request:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Accept-Encoding: gzip,deflate&quot;&lt;/span&gt; http://example.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ab <span class="nt">-n</span> 100 <span class="nt">-c</span> 10 <span class="nt">-H</span> <span class="s2">"Accept-Encoding: gzip,deflate"</span> http://example.com/
+</code></pre></div></div>
 
-&lt;p&gt;The argument is typically in the form of a valid header line, containing a colon-separated field-value pair (ex., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;Accept-Encoding: gzip,deflate&quot;&lt;/code&gt;).&lt;/p&gt;
+<p>The argument is typically in the form of a valid header line, containing a colon-separated field-value pair (ex., <code class="language-plaintext highlighter-rouge">"Accept-Encoding: gzip,deflate"</code>).</p>
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-r&lt;/code&gt; flag means don’t exit if it gets an error:&lt;/p&gt;
+<p>The <code class="language-plaintext highlighter-rouge">-r</code> flag means don’t exit if it gets an error:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; http://example.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ab <span class="nt">-n</span> 100 <span class="nt">-c</span> 10 <span class="nt">-r</span> http://example.com/
+</code></pre></div></div>
 
-&lt;p&gt;To make POST requests with a specific file used as the POST data, run the following command:&lt;/p&gt;
+<p>To make POST requests with a specific file used as the POST data, run the following command:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; data.json &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; application/json http://example.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ab <span class="nt">-n</span> 100 <span class="nt">-c</span> 10 <span class="nt">-p</span> data.json <span class="nt">-T</span> application/json http://example.com/
+</code></pre></div></div>
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-T&lt;/code&gt; flag allows to specify the content type header like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;application/json&lt;/code&gt;. Default is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text/plain&lt;/code&gt;.&lt;/p&gt;
+<p>The <code class="language-plaintext highlighter-rouge">-T</code> flag allows to specify the content type header like <code class="language-plaintext highlighter-rouge">application/json</code>. Default is <code class="language-plaintext highlighter-rouge">text/plain</code>.</p>
 
-&lt;p&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;watch&lt;/code&gt; to keep on firing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ab&lt;/code&gt; requests at an endpoint. Notice that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;watch&lt;/code&gt; isn’t available by default on macOS, but can be easily installed with Homebrew:&lt;/p&gt;
+<p>Use <code class="language-plaintext highlighter-rouge">watch</code> to keep on firing <code class="language-plaintext highlighter-rouge">ab</code> requests at an endpoint. Notice that <code class="language-plaintext highlighter-rouge">watch</code> isn’t available by default on macOS, but can be easily installed with Homebrew:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;watch
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>watch
+</code></pre></div></div>
 
-&lt;p&gt;and run&lt;/p&gt;
+<p>and run</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;watch &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1 ab &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 10 http://example.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="Apache Bench" /><category term="Apache Benchmark" /><summary type="html">The following command runs 100 requests in total with 10 concurrent requests to example.com.</summary></entry><entry><title type="html">At least one checkbox must be selected (checked)</title><link href="https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/" rel="alternate" type="text/html" title="At least one checkbox must be selected (checked)" /><published>2019-07-13T00:00:00+03:00</published><updated>2019-07-13T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected</id><content type="html" xml:base="https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/">&lt;p&gt;There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error message, we will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setCustomValidity()&lt;/code&gt; method.&lt;/p&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch <span class="nt">-n</span> 1 ab <span class="nt">-n</span> 100 <span class="nt">-c</span> 10 http://example.com/
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="Testing" /><category term="Apache Bench" /><category term="Apache Benchmark" /><summary type="html"><![CDATA[The following command runs 100 requests in total with 10 concurrent requests to example.com.]]></summary></entry><entry><title type="html">At least one checkbox must be selected (checked)</title><link href="https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/" rel="alternate" type="text/html" title="At least one checkbox must be selected (checked)" /><published>2019-07-13T00:00:00+03:00</published><updated>2019-07-13T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected</id><content type="html" xml:base="https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/"><![CDATA[<p>There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error message, we will use <code class="language-plaintext highlighter-rouge">setCustomValidity()</code> method.</p>
 
-&lt;p&gt;Here’s how the error message will look in the Google Chrome browser when trying to send a form without selecting a checkbox:&lt;/p&gt;
+<p>Here’s how the error message will look in the Google Chrome browser when trying to send a form without selecting a checkbox:</p>
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/js-select-at-least-one-item.png&quot; alt=&quot;Select at least one item form&quot; /&gt;&lt;/p&gt;
+<p><img src="/assets/images/js-select-at-least-one-item.png" alt="Select at least one item form" /></p>
 
-&lt;p&gt;HTML code:&lt;/p&gt;
+<p>HTML code:</p>
 
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;At least one checkbox must be selected&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sectionForm&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;Please select at least one item&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>At least one checkbox must be selected<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"sectionForm"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h3&gt;</span>Please select at least one item<span class="nt">&lt;/h3&gt;</span>
 
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;checkbox&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sports&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Sports&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;checkbox&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;business&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Business&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;checkbox&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;health&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Health&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;checkbox&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;section&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;society&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Society&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        <span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"section"</span> <span class="na">value=</span><span class="s">"sports"</span><span class="nt">&gt;</span>Sports<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"section"</span> <span class="na">value=</span><span class="s">"business"</span><span class="nt">&gt;</span>Business<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"section"</span> <span class="na">value=</span><span class="s">"health"</span><span class="nt">&gt;</span>Health<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"section"</span> <span class="na">value=</span><span class="s">"society"</span><span class="nt">&gt;</span>Society<span class="nt">&lt;/p&gt;</span>
         
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Submit&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+        <span class="nt">&lt;p&gt;&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span><span class="nt">&gt;&lt;/p&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
 
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;script.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
 
-&lt;p&gt;A content of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;script.js&lt;/code&gt; file:&lt;/p&gt;
+<p>A content of the <code class="language-plaintext highlighter-rouge">script.js</code> file:</p>
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;form&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;#sectionForm&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;input[type=checkbox]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxLength&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;firstCheckbox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxLength&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#sectionForm</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">checkboxes</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nf">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">input[type=checkbox]</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">checkboxLength</span> <span class="o">=</span> <span class="nx">checkboxes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">firstCheckbox</span> <span class="o">=</span> <span class="nx">checkboxLength</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">checkboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
 
-    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;firstCheckbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;nx&quot;&gt;checkboxes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkValidity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">firstCheckbox</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">checkboxLength</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">checkboxes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="nx">checkValidity</span><span class="p">);</span>
+            <span class="p">}</span>
 
-            &lt;span class=&quot;nx&quot;&gt;checkValidity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            <span class="nf">checkValidity</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isChecked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkboxLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;checkboxes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;checked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    <span class="kd">function</span> <span class="nf">isChecked</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">checkboxLength</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if </span><span class="p">(</span><span class="nx">checkboxes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">checked</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkValidity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;errorMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isChecked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;At least one checkbox must be selected.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;firstCheckbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setCustomValidity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;errorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    <span class="kd">function</span> <span class="nf">checkValidity</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="o">!</span><span class="nf">isChecked</span><span class="p">()</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">At least one checkbox must be selected.</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="p">;</span>
+        <span class="nx">firstCheckbox</span><span class="p">.</span><span class="nf">setCustomValidity</span><span class="p">(</span><span class="nx">errorMessage</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    &lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="checkbox" /><category term="setCustomValidity" /><summary type="html">There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error message, we will use setCustomValidity() method.</summary></entry><entry><title type="html">How to fix imprecise calculations in JavaScript</title><link href="https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript/" rel="alternate" type="text/html" title="How to fix imprecise calculations in JavaScript" /><published>2019-01-20T00:00:00+02:00</published><updated>2019-01-20T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript</id><content type="html" xml:base="https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript/">&lt;p&gt;What is it about? Try to execute some of the following examples in the browser console (or somehow using JavaScript) and you will see that sometimes there are small computational errors.&lt;/p&gt;
+    <span class="nf">init</span><span class="p">();</span>
+<span class="p">})();</span>
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="JavaScript" /><category term="checkbox" /><category term="setCustomValidity" /><summary type="html"><![CDATA[There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error message, we will use setCustomValidity() method.]]></summary></entry><entry><title type="html">How to fix imprecise calculations in JavaScript</title><link href="https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript/" rel="alternate" type="text/html" title="How to fix imprecise calculations in JavaScript" /><published>2019-01-20T00:00:00+02:00</published><updated>2019-01-20T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript</id><content type="html" xml:base="https://vyspiansky.github.io/2019/01/20/imprecise-calculations-in-javascript/"><![CDATA[<p>What is it about? Try to execute some of the following examples in the browser console (or somehow using JavaScript) and you will see that sometimes there are small computational errors.</p>
 
-&lt;p&gt;Browser console output:&lt;/p&gt;
+<p>Browser console output:</p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 0.1 + 0.2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 0.1 + 0.2
 0.30000000000000004
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 0.1 * 0.2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 0.1 * 0.2
 0.020000000000000004
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 16.08 * 100
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 16.08 * 100
 1607.9999999999998
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 0.1.toFixed(20)
-&quot;0.10000000000000000555&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 0.1.toFixed(20)
+"0.10000000000000000555"
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 9999999999999999
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 9999999999999999
 10000000000000000
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;p&gt;Don’t get me wrong, this is certainly not a problem of the language itself. The same thing happens in Java, C, PHP, Ruby, etc. If you are interested in the details, please read more in &lt;a href=&quot;https://javascript.info/number#imprecise-calculations&quot;&gt;this article&lt;/a&gt;.&lt;/p&gt;
+<p>Don’t get me wrong, this is certainly not a problem of the language itself. The same thing happens in Java, C, PHP, Ruby, etc. If you are interested in the details, please read more in <a href="https://javascript.info/number#imprecise-calculations">this article</a>.</p>
 
-&lt;p&gt;Below you will find the simplest solutions that allow to “fix” this inaccuracy.&lt;/p&gt;
+<p>Below you will find the simplest solutions that allow to “fix” this inaccuracy.</p>
 
-&lt;h2 id=&quot;solution-1&quot;&gt;Solution #1&lt;/h2&gt;
+<h2 id="solution-1">Solution #1</h2>
 
-&lt;p&gt;Let’s use the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision&quot;&gt;toPrecision&lt;/a&gt; method to format a number to a specified precision.&lt;/p&gt;
+<p>Let’s use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision">toPrecision</a> method to format a number to a specified precision.</p>
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Pedro Ladaria's solution&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;parseFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toPrecision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Pedro Ladaria's solution</span>
+<span class="kd">function</span> <span class="nf">strip</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span><span class="nf">parseFloat</span><span class="p">(</span><span class="nx">number</span><span class="p">.</span><span class="nf">toPrecision</span><span class="p">(</span><span class="mi">12</span><span class="p">)));</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
-&lt;p&gt;Browser console:&lt;/p&gt;
+<p>Browser console:</p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; strip(0.1 + 0.2);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; strip(0.1 + 0.2);
 0.3
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; strip(0.1 * 0.2);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; strip(0.1 * 0.2);
 0.02
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; strip(16.08 * 100);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; strip(16.08 * 100);
 1608
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;h2 id=&quot;solution-2&quot;&gt;Solution #2&lt;/h2&gt;
+<h2 id="solution-2">Solution #2</h2>
 
-&lt;p&gt;Let’s format a number using fixed-point notation into a string with 2 (up to 20) digits after the decimal point using the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed&quot;&gt;toFixed&lt;/a&gt; method.&lt;/p&gt;
+<p>Let’s format a number using fixed-point notation into a string with 2 (up to 20) digits after the decimal point using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed">toFixed</a> method.</p>
 
-&lt;p&gt;Browser console:&lt;/p&gt;
+<p>Browser console:</p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; (0.1 + 0.2).toFixed(2)
-&quot;0.30&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; (0.1 + 0.2).toFixed(2)
+"0.30"
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; (0.1 * 0.2).toFixed(2)
-&quot;0.02&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; (0.1 * 0.2).toFixed(2)
+"0.02"
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; (16.08 * 100).toFixed(2)
-&quot;1608.00&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; (16.08 * 100).toFixed(2)
+"1608.00"
+</code></pre></div></div>
 
-&lt;p&gt;It’s not hard to get a number as a return value. For instance,&lt;/p&gt;
+<p>It’s not hard to get a number as a return value. For instance,</p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; parseFloat((0.1 + 0.2).toFixed(2))
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; parseFloat((0.1 + 0.2).toFixed(2))
 0.3
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="calculation" /><category term="parseFloat" /><category term="toFixed" /><summary type="html">What is it about? Try to execute some of the following examples in the browser console (or somehow using JavaScript) and you will see that sometimes there are small computational errors.</summary></entry><entry><title type="html">Set up PHP 7.2 on macOS Mojave (with homebrew)</title><link href="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/" rel="alternate" type="text/html" title="Set up PHP 7.2 on macOS Mojave (with homebrew)" /><published>2018-11-08T00:00:00+02:00</published><updated>2018-11-08T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew</id><content type="html" xml:base="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/">&lt;p&gt;To check the version of PHP in the terminal, type the following command:&lt;/p&gt;
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="JavaScript" /><category term="calculation" /><category term="parseFloat" /><category term="toFixed" /><summary type="html"><![CDATA[What is it about? Try to execute some of the following examples in the browser console (or somehow using JavaScript) and you will see that sometimes there are small computational errors.]]></summary></entry><entry><title type="html">Set up PHP 7.2 on macOS Mojave (with homebrew)</title><link href="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/" rel="alternate" type="text/html" title="Set up PHP 7.2 on macOS Mojave (with homebrew)" /><published>2018-11-08T00:00:00+02:00</published><updated>2018-11-08T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew</id><content type="html" xml:base="https://vyspiansky.github.io/2018/11/08/set-up-php-7.2-on-macos-mojave-with-homebrew/"><![CDATA[<p>To check the version of PHP in the terminal, type the following command:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php <span class="nt">-v</span>
+</code></pre></div></div>
 
-&lt;p&gt;or can see what versions of PHP are installed with &lt;/p&gt;
+<p>or can see what versions of PHP are installed with </p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew list | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew list | <span class="nb">grep </span>php
+</code></pre></div></div>
 
-&lt;p&gt;Maybe it’s worth cleaning up some of the old packages from brew. It’s up to you.&lt;/p&gt;
+<p>Maybe it’s worth cleaning up some of the old packages from brew. It’s up to you.</p>
 
-&lt;p&gt;Make sure brew is up to date:&lt;/p&gt;
+<p>Make sure brew is up to date:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew update
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew update
 brew upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;p&gt;Let’s finally install 7.2 version of PHP&lt;/p&gt;
+<p>Let’s finally install 7.2 version of PHP</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;php@7.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>php@7.2
+</code></pre></div></div>
 
-&lt;p&gt;If you need to have this version of PHP first in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATH&lt;/code&gt; run the following command:&lt;/p&gt;
+<p>If you need to have this version of PHP first in your <code class="language-plaintext highlighter-rouge">PATH</code> run the following command:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;/usr/local/opt/php@7.2/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;/usr/local/opt/php@7.2/sbin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
-&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bash_profile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/php@7.2/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/php@7.2/sbin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+<span class="nb">source</span> ~/.bash_profile
+</code></pre></div></div>
 
-&lt;p&gt;And the result?&lt;/p&gt;
+<p>And the result?</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php <span class="nt">--version</span>
+</code></pre></div></div>
 
-&lt;p&gt;Where is a php.ini file?&lt;/p&gt;
+<p>Where is a php.ini file?</p>
 
-&lt;p&gt;Your .ini file is located in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/local/etc/php/7.2/php.ini&lt;/code&gt;. To check just type&lt;/p&gt;
+<p>Your .ini file is located in <code class="language-plaintext highlighter-rouge">/usr/local/etc/php/7.2/php.ini</code>. To check just type</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php &lt;span class=&quot;nt&quot;&gt;--ini&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php <span class="nt">--ini</span>
+</code></pre></div></div>
 
-&lt;p&gt;How to install extensions?&lt;/p&gt;
+<p>How to install extensions?</p>
 
-&lt;p&gt;PHP extensions have been removed and now should be installed from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PECL&lt;/code&gt;:&lt;/p&gt;
+<p>PHP extensions have been removed and now should be installed from <code class="language-plaintext highlighter-rouge">PECL</code>:</p>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pecl &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;xdebug
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="command line" /><category term="terminal" /><category term="PHP" /><category term="homebrew" /><summary type="html">To check the version of PHP in the terminal, type the following command:</summary></entry><entry><title type="html">Error: tool ’xcodebuild’ requires Xcode… on macOS</title><link href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/" rel="alternate" type="text/html" title="Error: tool 'xcodebuild' requires Xcode... on macOS" /><published>2018-09-28T00:00:00+03:00</published><updated>2018-09-28T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode</id><content type="html" xml:base="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/">&lt;p&gt;If you get the following error with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm install&lt;/code&gt;&lt;/p&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pecl <span class="nb">install </span>xdebug
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="Mac" /><category term="command line" /><category term="terminal" /><category term="PHP" /><category term="homebrew" /><summary type="html"><![CDATA[To check the version of PHP in the terminal, type the following command:]]></summary></entry><entry><title type="html">Error: tool ’xcodebuild’ requires Xcode… on macOS</title><link href="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/" rel="alternate" type="text/html" title="Error: tool ’xcodebuild’ requires Xcode… on macOS" /><published>2018-09-28T00:00:00+03:00</published><updated>2018-09-28T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode</id><content type="html" xml:base="https://vyspiansky.github.io/2018/09/28/xcodebuild-requires-xcode/"><![CDATA[<p>If you get the following error with <code class="language-plaintext highlighter-rouge">npm install</code></p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instance
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory'/Library/Developer/CommandLineTools' is a command line tools instance
+</code></pre></div></div>
 
-&lt;p&gt;then to fix it try&lt;/p&gt;
+<p>then to fix it try</p>
 
-&lt;ol&gt;
-  &lt;li&gt;(optional) Install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Xcode&lt;/code&gt; - go to the AppStore and &lt;a href=&quot;https://itunes.apple.com/us/app/xcode/id497799835&quot;&gt;download the Xcode&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Point the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xcode-select&lt;/code&gt; developer directory to the appropriate directory from within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Xcode.app&lt;/code&gt;. To do this, run&lt;/li&gt;
-&lt;/ol&gt;
+<ol>
+  <li>(optional) Install <code class="language-plaintext highlighter-rouge">Xcode</code> - go to the AppStore and <a href="https://itunes.apple.com/us/app/xcode/id497799835">download the Xcode</a>.</li>
+  <li>Point the <code class="language-plaintext highlighter-rouge">xcode-select</code> developer directory to the appropriate directory from within <code class="language-plaintext highlighter-rouge">Xcode.app</code>. To do this, run</li>
+</ol>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;xcode-select &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /Applications/Xcode.app/Contents/Developer
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="command line" /><category term="terminal" /><category term="Xcode" /><summary type="html">If you get the following error with npm install</summary></entry><entry><title type="html">Launch Sublime Text 3 from the terminal</title><link href="https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal/" rel="alternate" type="text/html" title="Launch Sublime Text 3 from the terminal" /><published>2018-08-30T00:00:00+03:00</published><updated>2018-08-30T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal</id><content type="html" xml:base="https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal/">&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ echo $PATH
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>xcode-select <span class="nt">-s</span> /Applications/Xcode.app/Contents/Developer
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="Mac" /><category term="command line" /><category term="terminal" /><category term="Xcode" /><summary type="html"><![CDATA[If you get the following error with npm install]]></summary></entry><entry><title type="html">Launch Sublime Text 3 from the terminal</title><link href="https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal/" rel="alternate" type="text/html" title="Launch Sublime Text 3 from the terminal" /><published>2018-08-30T00:00:00+03:00</published><updated>2018-08-30T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal</id><content type="html" xml:base="https://vyspiansky.github.io/2018/08/30/launch-sublime-text-3-terminal/"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo $PATH
+</code></pre></div></div>
 
-&lt;p&gt;Output: /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin&lt;/p&gt;
+<p>Output: /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</p>
 
-&lt;p&gt;Create a symbolic link&lt;/p&gt;
+<p>Create a symbolic link</p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ln -s &quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/subl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+</code></pre></div></div>
 
-&lt;p&gt;To open the entire current directory&lt;/p&gt;
+<p>To open the entire current directory</p>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ subl .
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="command line" /><category term="terminal" /><category term="Sublime Text" /><summary type="html">$ echo $PATH</summary></entry><entry><title type="html">Install AWS CLI on macOS</title><link href="https://vyspiansky.github.io/2018/03/17/install-aws-cli-on-macos/" rel="alternate" type="text/html" title="Install AWS CLI on macOS" /><published>2018-03-17T00:00:00+02:00</published><updated>2018-03-17T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/03/17/install-aws-cli-on-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2018/03/17/install-aws-cli-on-macos/">&lt;h2 id=&quot;easiest-way-to-install-aws-cli&quot;&gt;Easiest way to install AWS CLI&lt;/h2&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ subl .
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="Mac" /><category term="command line" /><category term="terminal" /><category term="Sublime Text" /><summary type="html"><![CDATA[$ echo $PATH]]></summary></entry><entry><title type="html">Install AWS CLI on macOS</title><link href="https://vyspiansky.github.io/2018/03/17/install-aws-cli-on-macos/" rel="alternate" type="text/html" title="Install AWS CLI on macOS" /><published>2018-03-17T00:00:00+02:00</published><updated>2018-03-17T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/03/17/install-aws-cli-on-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2018/03/17/install-aws-cli-on-macos/"><![CDATA[<h2 id="easiest-way-to-install-aws-cli">Easiest way to install AWS CLI</h2>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install awscli
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install awscli
+</code></pre></div></div>
 
-&lt;p&gt;See more &lt;a href=&quot;http://www.chrisjmendez.com/2017/02/18/aws-installing-aws-client-using-homebrew/&quot;&gt;http://www.chrisjmendez.com/2017/02/18/aws-installing-aws-client-using-homebrew/&lt;/a&gt;&lt;/p&gt;
+<p>See more <a href="http://www.chrisjmendez.com/2017/02/18/aws-installing-aws-client-using-homebrew/">http://www.chrisjmendez.com/2017/02/18/aws-installing-aws-client-using-homebrew/</a></p>
 
-&lt;h2 id=&quot;a-bit-longer-way&quot;&gt;A bit longer way…&lt;/h2&gt;
+<h2 id="a-bit-longer-way">A bit longer way…</h2>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install python3
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install python3
 $ python3 --version
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo mkdir /usr/local/Frameworks
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mkdir /usr/local/Frameworks
 $ sudo chown $(whoami):admin /usr/local/Frameworks
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew link python
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew link python
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Error: pip3: command not found 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: pip3: command not found 
 $ brew postinstall python3
 $ pip3 --version
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre></div></div>
 
-&lt;p&gt;URL: &lt;a href=&quot;https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html&quot;&gt;https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html&lt;/a&gt;&lt;/p&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="AWS CLI" /><category term="Mac" /><category term="AWS" /><summary type="html">Easiest way to install AWS CLI</summary></entry><entry><title type="html">Working with AWS credentials on macOS</title><link href="https://vyspiansky.github.io/2018/03/01/aws-credentials/" rel="alternate" type="text/html" title="Working with AWS credentials on macOS" /><published>2018-03-01T00:00:00+02:00</published><updated>2018-03-01T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/03/01/aws-credentials</id><content type="html" xml:base="https://vyspiansky.github.io/2018/03/01/aws-credentials/">&lt;h2 id=&quot;check-credentials&quot;&gt;Check credentials&lt;/h2&gt;
+<p>URL: <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html</a></p>]]></content><author><name>Ihor Vyspiansky</name></author><category term="DevOps" /><category term="AWS CLI" /><category term="Mac" /><category term="AWS" /><summary type="html"><![CDATA[Easiest way to install AWS CLI]]></summary></entry><entry><title type="html">Working with AWS credentials on macOS</title><link href="https://vyspiansky.github.io/2018/03/01/aws-credentials/" rel="alternate" type="text/html" title="Working with AWS credentials on macOS" /><published>2018-03-01T00:00:00+02:00</published><updated>2018-03-01T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/03/01/aws-credentials</id><content type="html" xml:base="https://vyspiansky.github.io/2018/03/01/aws-credentials/"><![CDATA[<h2 id="check-credentials">Check credentials</h2>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ aws configure list
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws configure list
+</code></pre></div></div>
 
-&lt;h2 id=&quot;add-credentials&quot;&gt;Add credentials&lt;/h2&gt;
+<h2 id="add-credentials">Add credentials</h2>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nano ~/.aws/credentials
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ nano ~/.aws/credentials
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[default]
-aws_access_key_id=&amp;lt;…&amp;gt;
-aws_secret_access_key=&amp;lt;…&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ihor Vyspiansky</name></author><category term="AWS" /><category term="macOS" /><summary type="html">Check credentials</summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[default]
+aws_access_key_id=&lt;…&gt;
+aws_secret_access_key=&lt;…&gt;
+</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="DevOps" /><category term="AWS" /><category term="macOS" /><summary type="html"><![CDATA[Check credentials]]></summary></entry></feed>

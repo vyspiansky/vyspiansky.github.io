@@ -1,9 +1,9 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
 <html lang="en" class="no-js">
   <head>
@@ -12,6 +12,11 @@
 <!-- begin _includes/seo.html --><title>Working with AWS credentials on macOS | Tech Notes</title>
 <meta name="description" content="Check credentials">
 
+
+  <meta name="author" content="Ihor Vyspiansky">
+  
+  <meta property="article:author" content="Ihor Vyspiansky">
+  
 
 
 <meta property="og:type" content="article">
@@ -57,19 +62,16 @@
 
 
 
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
       "@type": "Person",
       "name": "Ihor Vyspiansky",
-      "url": "https://vyspiansky.github.io",
-      "sameAs": null
-    }
-  </script>
-
+      "url": "https://vyspiansky.github.io/"
+    
+  }
+</script>
 
 
   <meta name="google-site-verification" content="KG0n9zu7d_ZRm7brY-I_xyKwWDzuCr8L2drCAwKQ0GM" />
@@ -78,12 +80,15 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tech Notes Feed">
 
-<!-- http://t.co/dKP3o1e -->
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tech Notes Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
@@ -92,51 +97,46 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
-<link rel="icon" href="/assets/images/favicon.png">
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
 
   </head>
 
   <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
+    
 
-    <div class="masthead">
+<div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Tech Notes</a>
+        
+        <a class="site-title" href="/">
+          Tech Notes
+          
+        </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a href="/about/">About</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
-            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
-          </svg>
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
         </button>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -155,32 +155,33 @@
 
 
 
+
+
 <div id="main" role="main">
   
   <div class="sidebar sticky">
   
 
 
-<div itemscope itemtype="http://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
   
     <div class="author__avatar">
-      
-
-      
-        <img src="/assets/images/bio-photo.jpg" alt="Ihor Vyspiansky" itemprop="image">
-      
+      <a href="https://vyspiansky.github.io/">
+        <img src="/assets/images/bio-photo.jpg" alt="Ihor Vyspiansky" itemprop="image" class="u-photo">
+      </a>
     </div>
   
 
   <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://vyspiansky.github.io/" itemprop="url">Ihor Vyspiansky</a>
+    </h3>
     
-      <h3 class="author__name" itemprop="name">Ihor Vyspiansky</h3>
-    
-    
-      <p class="author__bio" itemprop="description">
-        Software Engineer at N-iX
-      </p>
+      <div class="author__bio p-note" itemprop="description">
+        <p>Software Engineer at N-iX</p>
+
+      </div>
     
   </div>
 
@@ -188,35 +189,33 @@
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
       
-        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">L'viv, Ukraine</span>
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">L'viv, Ukraine</span>
         </li>
       
 
       
         
           
-            <li><a href="mailto:i.vyspyanskyy@gmail.com"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:i.vyspyanskyy@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
           
         
           
         
           
-            <li><a href="https://twitter.com/vyspiansky"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            <li><a href="https://twitter.com/vyspiansky" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
           
-            <li><a href="https://www.facebook.com/i.vyspiansky"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+            <li><a href="https://www.facebook.com/i.vyspiansky" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
           
         
           
-            <li><a href="https://github.com/vyspiansky"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/vyspiansky" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
         
-      
-
       
 
       
@@ -269,7 +268,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -282,30 +281,45 @@
   </div>
 
 
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Working with AWS credentials on macOS">
     <meta itemprop="description" content="Check credentials">
-    <meta itemprop="datePublished" content="March 01, 2018">
+    <meta itemprop="datePublished" content="2018-03-01T00:00:00+02:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Working with AWS credentials on macOS
-</h1>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://vyspiansky.github.io/2018/03/01/aws-credentials/" class="u-url" itemprop="url">Working with AWS credentials on macOS
+</a>
+          </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
 
 
-
-
-  less than 1 minute read
-</p>
-          
         </header>
       
 
-      <section class="page__content" itemprop="text">
+      <section class="page__content e-content" itemprop="text">
         
         <h2 id="check-credentials">Check credentials</h2>
 
@@ -332,20 +346,14 @@ aws_secret_access_key=&lt;…&gt;
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      
-      
-      <a href="/tags/#aws" class="page__taxonomy-item" rel="tag">AWS</a><span class="sep">, </span>
+      <a href="/tags/#aws" class="page__taxonomy-item p-category" rel="tag">AWS</a><span class="sep">, </span>
     
-      
-      
-      <a href="/tags/#macos" class="page__taxonomy-item" rel="tag">macOS</a>
+      <a href="/tags/#macos" class="page__taxonomy-item p-category" rel="tag">macOS</a>
     
     </span>
   </p>
@@ -356,25 +364,22 @@ aws_secret_access_key=&lt;…&gt;
   
 
 
-  
-  
   
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
     
-      
-      
-      <a href="/categories/#devops" class="page__taxonomy-item" rel="tag">DevOps</a>
+      <a href="/categories/#devops" class="page__taxonomy-item p-category" rel="tag">DevOps</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-01T00:00:00+02:00">March 01, 2018</time></p>
-        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2018-03-01T00:00:00+02:00">March 1, 2018</time></p>
+
       </footer>
 
       <section class="page__share">
@@ -385,8 +390,6 @@ aws_secret_access_key=&lt;…&gt;
   <a href="https://twitter.com/intent/tweet?via=vyspiansky&text=Working+with+AWS+credentials+on+macOS%20https%3A%2F%2Fvyspiansky.github.io%2F2018%2F03%2F01%2Faws-credentials%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvyspiansky.github.io%2F2018%2F03%2F01%2Faws-credentials%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fvyspiansky.github.io%2F2018%2F03%2F01%2Faws-credentials%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
   <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvyspiansky.github.io%2F2018%2F03%2F01%2Faws-credentials%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
@@ -421,7 +424,7 @@ aws_secret_access_key=&lt;…&gt;
   
   
     <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
+      <h2 class="page__related-title">You may also enjoy</h2>
       <div class="grid__wrapper">
         
           
@@ -429,126 +432,182 @@ aws_secret_access_key=&lt;…&gt;
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/2021/06/22/too-many-open-files-error-on-macos/" rel="permalink">Too many open files error on macOS
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  less than 1 minute read
-</p>
+  <p class="page__meta">
     
-    <p class="archive__item-excerpt" itemprop="description">We’re going to increase an ulimit setting on macOS, but first let’s obtain the current limit of file descriptors via ulimit -n.
 
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re going to increase an ulimit setting on macOS, but first let’s obtain the current limit of file descriptors via ulimit -n.
 </p>
   </article>
 </div>
+
         
           
 
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/" rel="permalink">How to Write to NTFS Drives in macOS Mojave
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 minute read
-</p>
+  <p class="page__meta">
     
-    <p class="archive__item-excerpt" itemprop="description">In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.
 
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.
 </p>
   </article>
 </div>
+
         
           
 
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/2019/12/02/apache-bench-for-load-testing/" rel="permalink">Using Apache Bench for simple load testing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 minute read
-</p>
+  <p class="page__meta">
     
-    <p class="archive__item-excerpt" itemprop="description">The following command runs 100 requests in total with 10 concurrent requests to example.com.
 
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The following command runs 100 requests in total with 10 concurrent requests to example.com.
 </p>
   </article>
 </div>
+
         
           
 
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/" rel="permalink">At least one checkbox must be selected (checked)
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  less than 1 minute read
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error me...</p>
   </article>
 </div>
+
         
       </div>
     </div>
   
   
 </div>
+
     </div>
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
-    <div id="results" class="results"></div></div>
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
       </div>
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
@@ -575,18 +634,19 @@ aws_secret_access_key=&lt;…&gt;
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2021 Ihor Vyspiansky. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 Ihor Vyspiansky. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 
 
@@ -598,7 +658,7 @@ aws_secret_access_key=&lt;…&gt;
 
 
 
-  <script type="text/javascript">
+  <script>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-127494500-1']);
   
@@ -615,13 +675,14 @@ aws_secret_access_key=&lt;…&gt;
 
 
 
+
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://vyspiansky.github.io/2018/03/01/aws-credentials/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/2018/03/01/aws-credentials"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://vyspiansky.github.io/2018/03/01/aws-credentials/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/2018/03/01/aws-credentials"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://vyspiansky-github-io.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
@@ -632,6 +693,8 @@ aws_secret_access_key=&lt;…&gt;
 
 
   
+
+
 
 
 

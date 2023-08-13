@@ -1,4 +1,204 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2023-08-11T09:44:22+03:00</updated><id>https://vyspiansky.github.io/feed.xml</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Too many open files error on macOS</title><link href="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/" rel="alternate" type="text/html" title="Too many open files error on macOS" /><published>2021-06-22T00:00:00+03:00</published><updated>2021-06-22T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/"><![CDATA[<p>We’re going to increase an <code class="language-plaintext highlighter-rouge">ulimit</code> setting on macOS, but first let’s obtain the current limit of file descriptors via <code class="language-plaintext highlighter-rouge">ulimit -n</code>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://vyspiansky.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vyspiansky.github.io/" rel="alternate" type="text/html" /><updated>2023-08-13T14:30:12+03:00</updated><id>https://vyspiansky.github.io/feed.xml</id><title type="html">Tech Notes</title><subtitle>Software Developer Blog.</subtitle><author><name>Ihor Vyspiansky</name></author><entry><title type="html">Enable TLS (SSL) database connection and certificate-based authentication</title><link href="https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/" rel="alternate" type="text/html" title="Enable TLS (SSL) database connection and certificate-based authentication" /><published>2022-09-23T00:00:00+03:00</published><updated>2022-09-23T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth</id><content type="html" xml:base="https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/"><![CDATA[<p>This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.</p>
+
+<h2 id="check-openssl-version">Check openssl version</h2>
+
+<p>To avoid using an outdated version of <code class="language-plaintext highlighter-rouge">openssl</code>, it might be a good idea to upgrade it first. The easiest way is to run in a terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>openssl
+</code></pre></div></div>
+
+<p>As a result instead of <code class="language-plaintext highlighter-rouge">openssl</code> you will need to use <code class="language-plaintext highlighter-rouge">/usr/local/opt/openssl/bin/openssl</code>.</p>
+
+<p>Let’s check a newly installed version</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl version
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OpenSSL 3.0.5 5 Jul 2022 (Library: OpenSSL 3.0.5 5 Jul 2022)
+</code></pre></div></div>
+
+<h2 id="creating-a-root-certificate-authority-ca">Creating a Root Certificate Authority (CA)</h2>
+
+<p>The CA certificate is used to verify an authenticity of other certificates during secure communication.</p>
+
+<p>Let’s create two directories named <code class="language-plaintext highlighter-rouge">keys</code> (to store cryptographic keys) and <code class="language-plaintext highlighter-rouge">certs</code> (to store certificates) with the appropriate permissions</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>keys certs <span class="o">&amp;&amp;</span> <span class="nb">chmod </span>og-rwx keys certs
+</code></pre></div></div>
+
+<p>Create a trusted root certificate authority (CA):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl req <span class="nt">-new</span> <span class="nt">-days</span> 365 <span class="nt">-x509</span> <span class="nt">-nodes</span> <span class="se">\</span>
+  <span class="nt">-subj</span> <span class="s2">"/CN=Your Company Root CA"</span> <span class="se">\</span>
+  <span class="nt">-keyout</span> keys/ca.key <span class="se">\</span>
+  <span class="nt">-out</span> certs/ca.crt
+</code></pre></div></div>
+
+<h3 id="notes">Notes</h3>
+
+<ul>
+  <li>The subject might be more detailed if you want <code class="language-plaintext highlighter-rouge">/C=CN/ST=GD/L=SZ/O=Your Company, Inc./CN=Your Company Root CA</code></li>
+  <li>You can also just skip the <code class="language-plaintext highlighter-rouge">-subj</code> parameter within the command and pass all these arguments in the interactive mode.</li>
+</ul>
+
+<p>Copy a certificate authority’s (CA) certificate (<code class="language-plaintext highlighter-rouge">ca.crt</code>) from the <code class="language-plaintext highlighter-rouge">certs</code> directory to a PostgreSQL configuration directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>pgconf <span class="o">&amp;&amp;</span> <span class="nb">cp </span>certs/ca.crt pgconf/ca.crt
+</code></pre></div></div>
+
+<h2 id="generate-the-postgresql-server-key-and-certificate">Generate the PostgreSQL server key and certificate</h2>
+
+<p>The following code generates a server key and a certificate signing request (CSR), has the CSR signed by the root CA, and adds the server key and certificate to the <code class="language-plaintext highlighter-rouge">pgconf</code> directory with the appropriate permissions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl req <span class="nt">-new</span> <span class="nt">-nodes</span> <span class="nt">-out</span> server.csr <span class="se">\</span>
+  <span class="nt">-subj</span> <span class="s2">"/CN=postgres"</span> <span class="se">\</span>
+  <span class="nt">-keyout</span> pgconf/server.key
+</code></pre></div></div>
+
+<h3 id="notes-1">Notes</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">CN</code> (Common Name) field should match the hostname of the server.</li>
+  <li>If you want to add multiple names in the certificate, you should use the Subject Alternative Name (SubjectAltName, <code class="language-plaintext highlighter-rouge">SAN</code>) instead of <code class="language-plaintext highlighter-rouge">CN</code>.</li>
+</ul>
+
+<p>Now, you need to create server certificate with the appropriate <code class="language-plaintext highlighter-rouge">EKU</code> (Extended Key Usage) and <code class="language-plaintext highlighter-rouge">SAN</code> based on your <code class="language-plaintext highlighter-rouge">pgconf/server.key</code> file, e.g.:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl x509 <span class="nt">-req</span> <span class="nt">-in</span> server.csr <span class="nt">-days</span> 365 <span class="se">\</span>
+  <span class="nt">-CA</span> certs/ca.crt <span class="nt">-CAkey</span> keys/ca.key <span class="nt">-CAcreateserial</span> <span class="se">\</span>
+  <span class="nt">-out</span> pgconf/server.crt <span class="se">\</span>
+  <span class="nt">-extfile</span> &lt;<span class="o">(</span><span class="nb">cat</span> /etc/ssl/openssl.cnf &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">[SAN]</span><span class="se">\n</span><span class="s2">subjectAltName=IP:127.0.0.1,DNS:localhost,DNS:postgres</span><span class="se">\n</span><span class="s2">extendedKeyUsage=serverAuth"</span><span class="o">))</span> <span class="se">\</span>
+  <span class="nt">-extensions</span> SAN
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">extendedKeyUsage</code> says how a certificate can be used:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">clientAuth</code> means it can be used to authenticate a client, i.e. authentication by client certificate when doing mutual authentication.</li>
+  <li><code class="language-plaintext highlighter-rouge">serverAuth</code> means it can be used to authenticate a server.</li>
+</ul>
+
+<p>Let’s remove currently unnecessary <code class="language-plaintext highlighter-rouge">server.csr</code> file</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>server.csr
+</code></pre></div></div>
+
+<h2 id="configure-postgresql-to-enable-certificate-based-authentication">Configure PostgreSQL to enable certificate-based authentication</h2>
+
+<p>Set the TLS specific settings in <code class="language-plaintext highlighter-rouge">postgresql.conf</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssl = on # this enables TLS
+ssl_cert_file = '/pgconf/server.crt' # this specifies the server certificate
+ssl_key_file = '/pgconf/server.key' # this specifies the server private key
+ssl_ca_file = '/pgconf/ca.crt' # this specific which CA certificate to trust
+</code></pre></div></div>
+
+<p>Let’s explicitly lock down the configuration and TLS-related files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>og-rwx pgconf/<span class="k">*</span>
+</code></pre></div></div>
+
+<h2 id="generating-the-client-key-and-certificate">Generating the Client Key and Certificate</h2>
+
+<p>Now is the moment to configure a client, as failing to do so will prevent anyone from accessing this environment.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl req <span class="nt">-new</span> <span class="nt">-nodes</span> <span class="se">\</span>
+  <span class="nt">-subj</span> <span class="s2">"/CN=user1"</span> <span class="se">\</span>
+  <span class="nt">-out</span> client.csr <span class="se">\</span>
+  <span class="nt">-keyout</span> keys/client.key
+</code></pre></div></div>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">CN</code> for the client certificate must match the username of the client in the database. For example, if I created a user named <code class="language-plaintext highlighter-rouge">user1</code>, then the <code class="language-plaintext highlighter-rouge">CN</code> value must also be <code class="language-plaintext highlighter-rouge">user1</code>.</p>
+
+<p>Let’s lock down the keys files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>og-rwx keys/<span class="k">*</span>
+</code></pre></div></div>
+
+<p>Generate a certificate with an EKU <code class="language-plaintext highlighter-rouge">clientAuth</code> and <code class="language-plaintext highlighter-rouge">SAN</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl x509 <span class="nt">-req</span> <span class="nt">-in</span> client.csr <span class="nt">-days</span> 365 <span class="se">\</span>
+  <span class="nt">-CA</span> certs/ca.crt <span class="nt">-CAkey</span> keys/ca.key <span class="nt">-CAcreateserial</span> <span class="se">\</span>
+  <span class="nt">-out</span> certs/client.crt <span class="se">\</span>
+  <span class="nt">-extfile</span> &lt;<span class="o">(</span><span class="nb">cat</span> /etc/ssl/openssl.cnf &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">[SAN]</span><span class="se">\n</span><span class="s2">keyUsage=digitalSignature</span><span class="se">\n</span><span class="s2">extendedKeyUsage=clientAuth</span><span class="se">\n</span><span class="s2">"</span><span class="o">))</span> <span class="se">\</span>
+  <span class="nt">-extensions</span> SAN
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>client.csr
+</code></pre></div></div>
+
+<h2 id="connecting">Connecting</h2>
+
+<p>You can use environment variables to specify the options:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># the first parameter specifies which TLS mode to use to connect
+export PGSSLMODE="verify-full"
+# the following two parameters point to the client key/certificate
+export PGSSLCERT="`pwd`/certs/client.crt"
+export PGSSLKEY="`pwd`/keys/client.key"
+# this parameter points to the trusted root CA certificate
+export PGSSLROOTCERT="`pwd`/certs/ca.crt"
+</code></pre></div></div>
+
+<p>See <a href="https://www.postgresql.org/docs/current/libpq-envars.html">docs on environment variables</a> for details.</p>
+
+<p>Now, attempt a connection using only the certificate, without providing a password:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="nt">-h</span> localhost <span class="nt">-p</span> 5432 <span class="nt">-U</span> user1 postgres
+</code></pre></div></div>
+
+<h2 id="throubleshooting">Throubleshooting</h2>
+
+<h3 id="ca-md-too-weak">ca md too weak</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: ca md too weak
+</code></pre></div></div>
+
+<p>Solution: Update your openssl, for ex., use <code class="language-plaintext highlighter-rouge">brew install openssl</code> on macOS and then <code class="language-plaintext highlighter-rouge">/usr/local/opt/openssl/bin/openssl req -x509 -nodes...</code>.</p>
+
+<p>To determine a path of the openssl executable on your system, run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>which openssl
+/usr/bin/openssl
+</code></pre></div></div>
+
+<p>Before (on macOS):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl version
+</code></pre></div></div>
+
+<p>Output: LibreSSL 2.8.3</p>
+
+<p>After:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl version
+</code></pre></div></div>
+
+<p>Output: OpenSSL 3.0.5 5 Jul 2022 (Library: OpenSSL 3.0.5 5 Jul 2022)</p>
+
+<h3 id="wrong-keys-permissions">Wrong keys permissions</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: private key file "keys/client.key" has group or world access; file must have permissions u=rw (0600) or less if owned by the current user, or permissions u=rw,g=r (0640) or less if owned by root
+</code></pre></div></div>
+
+<p>Solution: Set an appropriate permission and ownership rights for your private key file.</p>
+
+<h3 id="authentication-failed-for-an-user">Authentication failed for an user</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: pq: certificate authentication failed for user "&lt;user_name&gt;"
+</code></pre></div></div>
+
+<p>Solution: If a certificate was generated with an EKU’s <code class="language-plaintext highlighter-rouge">serverAuth</code>, it should be assigned to a server certificate. If the certificate was generated with an EKU’s <code class="language-plaintext highlighter-rouge">clientAuth</code>, it should be assigned to a client certificate.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.crunchydata.com/blog/ssl-certificate-authentication-postgresql-docker-containers">Certificate Authentication Recipe for PostgreSQL Docker Containers</a></li>
+  <li><a href="https://www.cybertec-postgresql.com/en/setting-up-ssl-authentication-for-postgresql/">Setting up SSL authentication for PostgreSQL</a></li>
+  <li><a href="https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=certificates-replacing-custom">Replacing custom certificates</a></li>
+</ul>]]></content><author><name>Ihor Vyspiansky</name></author><category term="DevOps" /><category term="Mac" /><category term="macOS" /><category term="self-signed certificate" /><category term="Monterey" /><category term="SSL" /><category term="TLS" /><category term="PostgreSQL" /><category term="SubjectAltName" /><category term="SAN" /><category term="CN" /><summary type="html"><![CDATA[This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.]]></summary></entry><entry><title type="html">Too many open files error on macOS</title><link href="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/" rel="alternate" type="text/html" title="Too many open files error on macOS" /><published>2021-06-22T00:00:00+03:00</published><updated>2021-06-22T00:00:00+03:00</updated><id>https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos</id><content type="html" xml:base="https://vyspiansky.github.io/2021/06/22/too-many-open-files-error-on-macos/"><![CDATA[<p>We’re going to increase an <code class="language-plaintext highlighter-rouge">ulimit</code> setting on macOS, but first let’s obtain the current limit of file descriptors via <code class="language-plaintext highlighter-rouge">ulimit -n</code>.</p>
 
 <p>In case this value has not been changed before, a maximum number of <code class="language-plaintext highlighter-rouge">open files</code> most likely will be <code class="language-plaintext highlighter-rouge">256</code>.</p>
 
@@ -332,17 +532,4 @@ $ brew postinstall python3
 $ pip3 --version
 </code></pre></div></div>
 
-<p>URL: <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html</a></p>]]></content><author><name>Ihor Vyspiansky</name></author><category term="DevOps" /><category term="AWS CLI" /><category term="Mac" /><category term="AWS" /><summary type="html"><![CDATA[Easiest way to install AWS CLI]]></summary></entry><entry><title type="html">Working with AWS credentials on macOS</title><link href="https://vyspiansky.github.io/2018/03/01/aws-credentials/" rel="alternate" type="text/html" title="Working with AWS credentials on macOS" /><published>2018-03-01T00:00:00+02:00</published><updated>2018-03-01T00:00:00+02:00</updated><id>https://vyspiansky.github.io/2018/03/01/aws-credentials</id><content type="html" xml:base="https://vyspiansky.github.io/2018/03/01/aws-credentials/"><![CDATA[<h2 id="check-credentials">Check credentials</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws configure list
-</code></pre></div></div>
-
-<h2 id="add-credentials">Add credentials</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ nano ~/.aws/credentials
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[default]
-aws_access_key_id=&lt;…&gt;
-aws_secret_access_key=&lt;…&gt;
-</code></pre></div></div>]]></content><author><name>Ihor Vyspiansky</name></author><category term="DevOps" /><category term="AWS" /><category term="macOS" /><summary type="html"><![CDATA[Check credentials]]></summary></entry></feed>
+<p>URL: <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html</a></p>]]></content><author><name>Ihor Vyspiansky</name></author><category term="DevOps" /><category term="AWS CLI" /><category term="Mac" /><category term="AWS" /><summary type="html"><![CDATA[Easiest way to install AWS CLI]]></summary></entry></feed>

@@ -1,0 +1,903 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Enable TLS (SSL) database connection and certificate-based authentication | Tech Notes</title>
+<meta name="description" content="This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.">
+
+
+  <meta name="author" content="Ihor Vyspiansky">
+  
+  <meta property="article:author" content="Ihor Vyspiansky">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tech Notes">
+<meta property="og:title" content="Enable TLS (SSL) database connection and certificate-based authentication">
+<meta property="og:url" content="https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/">
+
+
+  <meta property="og:description" content="This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.">
+
+
+
+
+
+  <meta name="twitter:site" content="@vyspiansky">
+  <meta name="twitter:title" content="Enable TLS (SSL) database connection and certificate-based authentication">
+  <meta name="twitter:description" content="This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.">
+  <meta name="twitter:url" content="https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-09-23T00:00:00+03:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ihor Vyspiansky",
+      "url": "https://vyspiansky.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="KG0n9zu7d_ZRm7brY-I_xyKwWDzuCr8L2drCAwKQ0GM" />
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tech Notes Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tech Notes
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://vyspiansky.github.io/">
+        <img src="/assets/images/bio-photo.jpg" alt="Ihor Vyspiansky" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://vyspiansky.github.io/" itemprop="url">Ihor Vyspiansky</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Software Engineer at N-iX</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">L'viv, Ukraine</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:i.vyspyanskyy@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/vyspiansky" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://www.facebook.com/i.vyspiansky" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/vyspiansky" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Enable TLS (SSL) database connection and certificate-based authentication">
+    <meta itemprop="description" content="This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.">
+    <meta itemprop="datePublished" content="2022-09-23T00:00:00+03:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/" class="u-url" itemprop="url">Enable TLS (SSL) database connection and certificate-based authentication
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>This note aims to show step by step how to generate a self-signed SAN SSL/TLS certificate on macOS Monterey and then configure a secure connection and certificate-based authentication for PostgreSQL.</p>
+
+<h2 id="check-openssl-version">Check openssl version</h2>
+
+<p>To avoid using an outdated version of <code class="language-plaintext highlighter-rouge">openssl</code>, it might be a good idea to upgrade it first. The easiest way is to run in a terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>openssl
+</code></pre></div></div>
+
+<p>As a result instead of <code class="language-plaintext highlighter-rouge">openssl</code> you will need to use <code class="language-plaintext highlighter-rouge">/usr/local/opt/openssl/bin/openssl</code>.</p>
+
+<p>Let’s check a newly installed version</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl version
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OpenSSL 3.0.5 5 Jul 2022 (Library: OpenSSL 3.0.5 5 Jul 2022)
+</code></pre></div></div>
+
+<h2 id="creating-a-root-certificate-authority-ca">Creating a Root Certificate Authority (CA)</h2>
+
+<p>The CA certificate is used to verify an authenticity of other certificates during secure communication.</p>
+
+<p>Let’s create two directories named <code class="language-plaintext highlighter-rouge">keys</code> (to store cryptographic keys) and <code class="language-plaintext highlighter-rouge">certs</code> (to store certificates) with the appropriate permissions</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>keys certs <span class="o">&amp;&amp;</span> <span class="nb">chmod </span>og-rwx keys certs
+</code></pre></div></div>
+
+<p>Create a trusted root certificate authority (CA):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl req <span class="nt">-new</span> <span class="nt">-days</span> 365 <span class="nt">-x509</span> <span class="nt">-nodes</span> <span class="se">\</span>
+  <span class="nt">-subj</span> <span class="s2">"/CN=Your Company Root CA"</span> <span class="se">\</span>
+  <span class="nt">-keyout</span> keys/ca.key <span class="se">\</span>
+  <span class="nt">-out</span> certs/ca.crt
+</code></pre></div></div>
+
+<h3 id="notes">Notes</h3>
+
+<ul>
+  <li>The subject might be more detailed if you want <code class="language-plaintext highlighter-rouge">/C=CN/ST=GD/L=SZ/O=Your Company, Inc./CN=Your Company Root CA</code></li>
+  <li>You can also just skip the <code class="language-plaintext highlighter-rouge">-subj</code> parameter within the command and pass all these arguments in the interactive mode.</li>
+</ul>
+
+<p>Copy a certificate authority’s (CA) certificate (<code class="language-plaintext highlighter-rouge">ca.crt</code>) from the <code class="language-plaintext highlighter-rouge">certs</code> directory to a PostgreSQL configuration directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>pgconf <span class="o">&amp;&amp;</span> <span class="nb">cp </span>certs/ca.crt pgconf/ca.crt
+</code></pre></div></div>
+
+<h2 id="generate-the-postgresql-server-key-and-certificate">Generate the PostgreSQL server key and certificate</h2>
+
+<p>The following code generates a server key and a certificate signing request (CSR), has the CSR signed by the root CA, and adds the server key and certificate to the <code class="language-plaintext highlighter-rouge">pgconf</code> directory with the appropriate permissions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl req <span class="nt">-new</span> <span class="nt">-nodes</span> <span class="nt">-out</span> server.csr <span class="se">\</span>
+  <span class="nt">-subj</span> <span class="s2">"/CN=postgres"</span> <span class="se">\</span>
+  <span class="nt">-keyout</span> pgconf/server.key
+</code></pre></div></div>
+
+<h3 id="notes-1">Notes</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">CN</code> (Common Name) field should match the hostname of the server.</li>
+  <li>If you want to add multiple names in the certificate, you should use the Subject Alternative Name (SubjectAltName, <code class="language-plaintext highlighter-rouge">SAN</code>) instead of <code class="language-plaintext highlighter-rouge">CN</code>.</li>
+</ul>
+
+<p>Now, you need to create server certificate with the appropriate <code class="language-plaintext highlighter-rouge">EKU</code> (Extended Key Usage) and <code class="language-plaintext highlighter-rouge">SAN</code> based on your <code class="language-plaintext highlighter-rouge">pgconf/server.key</code> file, e.g.:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl x509 <span class="nt">-req</span> <span class="nt">-in</span> server.csr <span class="nt">-days</span> 365 <span class="se">\</span>
+  <span class="nt">-CA</span> certs/ca.crt <span class="nt">-CAkey</span> keys/ca.key <span class="nt">-CAcreateserial</span> <span class="se">\</span>
+  <span class="nt">-out</span> pgconf/server.crt <span class="se">\</span>
+  <span class="nt">-extfile</span> &lt;<span class="o">(</span><span class="nb">cat</span> /etc/ssl/openssl.cnf &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">[SAN]</span><span class="se">\n</span><span class="s2">subjectAltName=IP:127.0.0.1,DNS:localhost,DNS:postgres</span><span class="se">\n</span><span class="s2">extendedKeyUsage=serverAuth"</span><span class="o">))</span> <span class="se">\</span>
+  <span class="nt">-extensions</span> SAN
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">extendedKeyUsage</code> says how a certificate can be used:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">clientAuth</code> means it can be used to authenticate a client, i.e. authentication by client certificate when doing mutual authentication.</li>
+  <li><code class="language-plaintext highlighter-rouge">serverAuth</code> means it can be used to authenticate a server.</li>
+</ul>
+
+<p>Let’s remove currently unnecessary <code class="language-plaintext highlighter-rouge">server.csr</code> file</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>server.csr
+</code></pre></div></div>
+
+<h2 id="configure-postgresql-to-enable-certificate-based-authentication">Configure PostgreSQL to enable certificate-based authentication</h2>
+
+<p>Set the TLS specific settings in <code class="language-plaintext highlighter-rouge">postgresql.conf</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssl = on # this enables TLS
+ssl_cert_file = '/pgconf/server.crt' # this specifies the server certificate
+ssl_key_file = '/pgconf/server.key' # this specifies the server private key
+ssl_ca_file = '/pgconf/ca.crt' # this specific which CA certificate to trust
+</code></pre></div></div>
+
+<p>Let’s explicitly lock down the configuration and TLS-related files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>og-rwx pgconf/<span class="k">*</span>
+</code></pre></div></div>
+
+<h2 id="generating-the-client-key-and-certificate">Generating the Client Key and Certificate</h2>
+
+<p>Now is the moment to configure a client, as failing to do so will prevent anyone from accessing this environment.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl req <span class="nt">-new</span> <span class="nt">-nodes</span> <span class="se">\</span>
+  <span class="nt">-subj</span> <span class="s2">"/CN=user1"</span> <span class="se">\</span>
+  <span class="nt">-out</span> client.csr <span class="se">\</span>
+  <span class="nt">-keyout</span> keys/client.key
+</code></pre></div></div>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">CN</code> for the client certificate must match the username of the client in the database. For example, if I created a user named <code class="language-plaintext highlighter-rouge">user1</code>, then the <code class="language-plaintext highlighter-rouge">CN</code> value must also be <code class="language-plaintext highlighter-rouge">user1</code>.</p>
+
+<p>Let’s lock down the keys files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>og-rwx keys/<span class="k">*</span>
+</code></pre></div></div>
+
+<p>Generate a certificate with an EKU <code class="language-plaintext highlighter-rouge">clientAuth</code> and <code class="language-plaintext highlighter-rouge">SAN</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl x509 <span class="nt">-req</span> <span class="nt">-in</span> client.csr <span class="nt">-days</span> 365 <span class="se">\</span>
+  <span class="nt">-CA</span> certs/ca.crt <span class="nt">-CAkey</span> keys/ca.key <span class="nt">-CAcreateserial</span> <span class="se">\</span>
+  <span class="nt">-out</span> certs/client.crt <span class="se">\</span>
+  <span class="nt">-extfile</span> &lt;<span class="o">(</span><span class="nb">cat</span> /etc/ssl/openssl.cnf &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">[SAN]</span><span class="se">\n</span><span class="s2">keyUsage=digitalSignature</span><span class="se">\n</span><span class="s2">extendedKeyUsage=clientAuth</span><span class="se">\n</span><span class="s2">"</span><span class="o">))</span> <span class="se">\</span>
+  <span class="nt">-extensions</span> SAN
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>client.csr
+</code></pre></div></div>
+
+<h2 id="connecting">Connecting</h2>
+
+<p>You can use environment variables to specify the options:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># the first parameter specifies which TLS mode to use to connect
+export PGSSLMODE="verify-full"
+# the following two parameters point to the client key/certificate
+export PGSSLCERT="`pwd`/certs/client.crt"
+export PGSSLKEY="`pwd`/keys/client.key"
+# this parameter points to the trusted root CA certificate
+export PGSSLROOTCERT="`pwd`/certs/ca.crt"
+</code></pre></div></div>
+
+<p>See <a href="https://www.postgresql.org/docs/current/libpq-envars.html">docs on environment variables</a> for details.</p>
+
+<p>Now, attempt a connection using only the certificate, without providing a password:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="nt">-h</span> localhost <span class="nt">-p</span> 5432 <span class="nt">-U</span> user1 postgres
+</code></pre></div></div>
+
+<h2 id="throubleshooting">Throubleshooting</h2>
+
+<h3 id="ca-md-too-weak">ca md too weak</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: ca md too weak
+</code></pre></div></div>
+
+<p>Solution: Update your openssl, for ex., use <code class="language-plaintext highlighter-rouge">brew install openssl</code> on macOS and then <code class="language-plaintext highlighter-rouge">/usr/local/opt/openssl/bin/openssl req -x509 -nodes...</code>.</p>
+
+<p>To determine a path of the openssl executable on your system, run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>which openssl
+/usr/bin/openssl
+</code></pre></div></div>
+
+<p>Before (on macOS):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl version
+</code></pre></div></div>
+
+<p>Output: LibreSSL 2.8.3</p>
+
+<p>After:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/opt/openssl/bin/openssl version
+</code></pre></div></div>
+
+<p>Output: OpenSSL 3.0.5 5 Jul 2022 (Library: OpenSSL 3.0.5 5 Jul 2022)</p>
+
+<h3 id="wrong-keys-permissions">Wrong keys permissions</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: private key file "keys/client.key" has group or world access; file must have permissions u=rw (0600) or less if owned by the current user, or permissions u=rw,g=r (0640) or less if owned by root
+</code></pre></div></div>
+
+<p>Solution: Set an appropriate permission and ownership rights for your private key file.</p>
+
+<h3 id="authentication-failed-for-an-user">Authentication failed for an user</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: pq: certificate authentication failed for user "&lt;user_name&gt;"
+</code></pre></div></div>
+
+<p>Solution: If a certificate was generated with an EKU’s <code class="language-plaintext highlighter-rouge">serverAuth</code>, it should be assigned to a server certificate. If the certificate was generated with an EKU’s <code class="language-plaintext highlighter-rouge">clientAuth</code>, it should be assigned to a client certificate.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.crunchydata.com/blog/ssl-certificate-authentication-postgresql-docker-containers">Certificate Authentication Recipe for PostgreSQL Docker Containers</a></li>
+  <li><a href="https://www.cybertec-postgresql.com/en/setting-up-ssl-authentication-for-postgresql/">Setting up SSL authentication for PostgreSQL</a></li>
+  <li><a href="https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=certificates-replacing-custom">Replacing custom certificates</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cn" class="page__taxonomy-item p-category" rel="tag">CN</a><span class="sep">, </span>
+    
+      <a href="/tags/#macos" class="page__taxonomy-item p-category" rel="tag">macOS</a><span class="sep">, </span>
+    
+      <a href="/tags/#monterey" class="page__taxonomy-item p-category" rel="tag">Monterey</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgresql" class="page__taxonomy-item p-category" rel="tag">PostgreSQL</a><span class="sep">, </span>
+    
+      <a href="/tags/#san" class="page__taxonomy-item p-category" rel="tag">SAN</a><span class="sep">, </span>
+    
+      <a href="/tags/#self-signed-certificate" class="page__taxonomy-item p-category" rel="tag">self-signed certificate</a><span class="sep">, </span>
+    
+      <a href="/tags/#ssl" class="page__taxonomy-item p-category" rel="tag">SSL</a><span class="sep">, </span>
+    
+      <a href="/tags/#subjectaltname" class="page__taxonomy-item p-category" rel="tag">SubjectAltName</a><span class="sep">, </span>
+    
+      <a href="/tags/#tls" class="page__taxonomy-item p-category" rel="tag">TLS</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#devops" class="page__taxonomy-item p-category" rel="tag">DevOps</a><span class="sep">, </span>
+    
+      <a href="/categories/#mac" class="page__taxonomy-item p-category" rel="tag">Mac</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-09-23T00:00:00+03:00">September 23, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=vyspiansky&text=Enable+TLS+%28SSL%29+database+connection+and+certificate-based+authentication%20https%3A%2F%2Fvyspiansky.github.io%2F2022%2F09%2F23%2Fsecure-db-connection-with-certificate-auth%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvyspiansky.github.io%2F2022%2F09%2F23%2Fsecure-db-connection-with-certificate-auth%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvyspiansky.github.io%2F2022%2F09%2F23%2Fsecure-db-connection-with-certificate-auth%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2021/06/22/too-many-open-files-error-on-macos/" class="pagination--pager" title="Too many open files error on macOS
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2021/06/22/too-many-open-files-error-on-macos/" rel="permalink">Too many open files error on macOS
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">We’re going to increase an ulimit setting on macOS, but first let’s obtain the current limit of file descriptors via ulimit -n.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2020/01/09/how-to-write-to-ntfs-drives-in-macos-mojave/" rel="permalink">How to Write to NTFS Drives in macOS Mojave
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In case you use NTFS formatted USB drives on your Mac, you can only open files stored on those drives, but you can’t change those files.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019/12/02/apache-bench-for-load-testing/" rel="permalink">Using Apache Bench for simple load testing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The following command runs 100 requests in total with 10 concurrent requests to example.com.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/" rel="permalink">At least one checkbox must be selected (checked)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">There is a form with multiple checkboxes and we’re going to make sure that at least one is checked using pure JavaScript. To set a custom validation error me...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Ihor Vyspiansky. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QP5EPH1W8D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QP5EPH1W8D', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://vyspiansky.github.io/2022/09/23/secure-db-connection-with-certificate-auth/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/2022/09/23/secure-db-connection-with-certificate-auth"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://vyspiansky-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

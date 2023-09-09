@@ -361,6 +361,10 @@
 <span class="k">COLLATE</span> <span class="n">utf8_unicode_ci</span><span class="p">;</span>
 </code></pre></div></div>
 
+<h4 id="update">Update</h4>
+
+<p>You have to use <code class="language-plaintext highlighter-rouge">utf8mb4</code> rather than <code class="language-plaintext highlighter-rouge">utf8</code>. Confusingly, <code class="language-plaintext highlighter-rouge">utf8</code> is a flawed UTF-8 implementation from early MySQL versions which remains only for backward compatibility. The fixed version was given the name <code class="language-plaintext highlighter-rouge">utf8mb4</code>. <a href="https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci">Read more &gt;</a></p>
+
         
       </section>
 

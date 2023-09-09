@@ -54,7 +54,7 @@ var store = [{
         "teaser": null
       },{
         "title": "How to reload Nginx on Alpine Linux",
-        "excerpt":"$ nginx -s reload -c /conf/nginx/nginx.conf  ","categories": ["DevOps"],
+        "excerpt":"When you run the following command, Nginx will reload its configuration from a specified file without stopping the server   nginx -s reload -c /conf/nginx/nginx.conf   This allows you to apply changes to the Nginx server’s configuration while it’s running, ensuring that it continues to serve web requests without interruption.   See also Nginx’s Beginner’s Guide.  ","categories": ["DevOps"],
         "tags": ["Nginx","Alpine Linux"],
         "url": "/2018/03/01/reload-nginx-on-alpine/",
         "teaser": null

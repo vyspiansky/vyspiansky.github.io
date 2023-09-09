@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>How to reload Nginx on Alpine Linux | Tech Notes</title>
-<meta name="description" content="$ nginx -s reload -c /conf/nginx/nginx.conf">
+<meta name="description" content="When you run the following command, Nginx will reload its configuration from a specified file without stopping the server">
 
 
   <meta name="author" content="Ihor Vyspiansky">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://vyspiansky.github.io/2018/03/01/reload-nginx-on-alpine/">
 
 
-  <meta property="og:description" content="$ nginx -s reload -c /conf/nginx/nginx.conf">
+  <meta property="og:description" content="When you run the following command, Nginx will reload its configuration from a specified file without stopping the server">
 
 
 
@@ -34,7 +34,7 @@
 
   <meta name="twitter:site" content="@vyspiansky">
   <meta name="twitter:title" content="How to reload Nginx on Alpine Linux">
-  <meta name="twitter:description" content="$ nginx -s reload -c /conf/nginx/nginx.conf">
+  <meta name="twitter:description" content="When you run the following command, Nginx will reload its configuration from a specified file without stopping the server">
   <meta name="twitter:url" content="https://vyspiansky.github.io/2018/03/01/reload-nginx-on-alpine/">
 
   
@@ -285,7 +285,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="How to reload Nginx on Alpine Linux">
-    <meta itemprop="description" content="$ nginx -s reload -c /conf/nginx/nginx.conf">
+    <meta itemprop="description" content="When you run the following command, Nginx will reload its configuration from a specified file without stopping the server">
     <meta itemprop="datePublished" content="2018-03-01T00:00:00+02:00">
     
 
@@ -322,8 +322,14 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ nginx -s reload -c /conf/nginx/nginx.conf
+        <p>When you run the following command, Nginx will reload its configuration from a specified file without stopping the server</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nginx <span class="nt">-s</span> reload <span class="nt">-c</span> /conf/nginx/nginx.conf
 </code></pre></div></div>
+
+<p>This allows you to apply changes to the Nginx server’s configuration while it’s running, ensuring that it continues to serve web requests without interruption.</p>
+
+<p>See also <a href="https://nginx.org/en/docs/beginners_guide.html">Nginx’s Beginner’s Guide</a>.</p>
 
         
       </section>
